@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-24T12:26:33.731Z",
-  "totalVideos": 24,
+  "generatedAt": "2026-10-24T12:50:21.328Z",
+  "totalVideos": 22,
   "ignoredFiles": [],
   "items": [
     {
@@ -114,17 +114,6 @@
       "viewsConfirmed": false
     },
     {
-      "id": "automotive-detailing-studio",
-      "filename": "automotive-detailing-studio.mp4",
-      "video": "/videos/projects/automotive-detailing-studio.mp4",
-      "thumbnail": "/images/portfolio/thumbnails/automotive-detailing-studio.webp",
-      "fileSizeBytes": 6407039,
-      "inferredCategory": "Automotive",
-      "suggestedViews": null,
-      "suggestedViewsFromFilename": null,
-      "viewsConfirmed": false
-    },
-    {
       "id": "before-vs-after",
       "filename": "Before VS after.mp4",
       "video": "/videos/projects/Before%20VS%20after.mp4",
@@ -186,17 +175,6 @@
       "thumbnail": "/images/portfolio/thumbnails/mad-monkey-edit.webp",
       "fileSizeBytes": 7514017,
       "inferredCategory": "Other",
-      "suggestedViews": null,
-      "suggestedViewsFromFilename": null,
-      "viewsConfirmed": false
-    },
-    {
-      "id": "manufacturing-brand-film",
-      "filename": "manufacturing-brand-film.mp4",
-      "video": "/videos/projects/manufacturing-brand-film.mp4",
-      "thumbnail": "/images/portfolio/thumbnails/manufacturing-brand-film.webp",
-      "fileSizeBytes": 19594824,
-      "inferredCategory": "Manufacturing",
       "suggestedViews": null,
       "suggestedViewsFromFilename": null,
       "viewsConfirmed": false

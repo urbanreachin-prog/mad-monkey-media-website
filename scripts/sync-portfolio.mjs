@@ -22,6 +22,15 @@ const MANIFEST_PATH = path.join(ROOT_DIR, "src", "data", "portfolio-manifest.jso
 const SUPPORTED_VIDEO_EXTENSIONS = new Set([".mp4", ".webm", ".mov", ".m4v"]);
 
 /**
+ * Known duplicate video filenames that are identical clips to existing view-tagged
+ * portfolio videos (`45.6k Views.mp4` and `68k+views.mp4`).
+ */
+const DUPLICATE_VIDEO_FILES_TO_IGNORE = new Set([
+  "automotive-detailing-studio.mp4",
+  "manufacturing-brand-film.mp4",
+]);
+
+/**
  * Convert a filename into a stable, URL-safe kebab-case ID.
  */
 function toStableId(filename) {
@@ -298,6 +307,10 @@ async function main() {
 
   for (const entry of allEntries) {
     if (!entry.isFile()) continue;
+    if (DUPLICATE_VIDEO_FILES_TO_IGNORE.has(entry.name.toLowerCase())) {
+      ignoredFiles.push(entry.name);
+      continue;
+    }
     const ext = path.extname(entry.name).toLowerCase();
     if (SUPPORTED_VIDEO_EXTENSIONS.has(ext)) {
       videoFiles.push(entry.name);

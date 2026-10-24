@@ -141,11 +141,11 @@ export const PORTFOLIO_METADATA: Record<string, PortfolioMetadataOverride> = {
     featured: true,
     order: 4,
   },
-  "automotive-detailing-studio": {
+  "45-6k-views": {
     category: "Automotive",
-    suggestedViews: null,
-    views: null,
-    viewsConfirmed: false,
+    suggestedViews: "45.6K views",
+    views: "45.6K VIEWS",
+    viewsConfirmed: true,
     featured: true,
     order: 5,
   },
@@ -164,14 +164,6 @@ export const PORTFOLIO_METADATA: Record<string, PortfolioMetadataOverride> = {
     viewsConfirmed: false,
     featured: false,
     order: 10,
-  },
-  "45-6k-views": {
-    category: "Automotive",
-    suggestedViews: "45.6K views",
-    views: "45.6K VIEWS",
-    viewsConfirmed: true,
-    featured: false,
-    order: 11,
   },
   "most-popular-one": {
     category: "Automotive",
@@ -193,21 +185,13 @@ export const PORTFOLIO_METADATA: Record<string, PortfolioMetadataOverride> = {
   },
 
   // --- MANUFACTURING ---
-  "manufacturing-brand-film": {
-    category: "Manufacturing",
-    suggestedViews: null,
-    views: null,
-    viewsConfirmed: false,
-    featured: true,
-    order: 8,
-  },
   "68k-plus-views": {
     category: "Manufacturing",
     suggestedViews: "68K+ views",
     views: "68K+ VIEWS",
     viewsConfirmed: true,
-    featured: false,
-    order: 13,
+    featured: true,
+    order: 8,
   },
 
   // --- PERSONAL BRANDING ---
@@ -355,46 +339,82 @@ function normalizeCategory(raw: string | undefined): ProjectCategory {
 }
 
 /**
- * Merged list of all discovered portfolio video items from `portfolio-manifest.json`
+ * Known duplicate portfolio IDs that correspond to the same video clips as
+ * `45-6k-views` (`45.6k Views.mp4`) and `68k-plus-views` (`68k+views.mp4`).
+ */
+const DUPLICATE_PORTFOLIO_IDS = new Set<string>([
+  "automotive-detailing-studio",
+  "manufacturing-brand-film",
+]);
+
+/**
+ * Merged list of all unique discovered portfolio video items from `portfolio-manifest.json`
  * combined with verified overrides in `PORTFOLIO_METADATA`.
  */
-export const portfolioItems: PortfolioItem[] = portfolioManifest.items
-  .map((manifestItem, index): PortfolioItem => {
-    const override = PORTFOLIO_METADATA[manifestItem.id] ?? {};
-    const category =
-      override.category ?? normalizeCategory(manifestItem.inferredCategory);
+export const portfolioItems: PortfolioItem[] = (() => {
+  const seenIds = new Set<string>();
+  const seenVideos = new Set<string>();
+  const seenFilenames = new Set<string>();
 
-    const suggestedViews =
-      override.suggestedViews ??
-      manifestItem.suggestedViews ??
-      manifestItem.suggestedViewsFromFilename ??
-      null;
-    const viewsConfirmed = Boolean(override.viewsConfirmed);
-    const activeViews = viewsConfirmed
-      ? override.views ?? suggestedViews ?? null
-      : null;
+  return portfolioManifest.items
+    .filter((manifestItem) => {
+      if (DUPLICATE_PORTFOLIO_IDS.has(manifestItem.id)) {
+        return false;
+      }
+      const normId = manifestItem.id.toLowerCase();
+      const normVideo = manifestItem.video.toLowerCase();
+      const normFile = manifestItem.filename.toLowerCase();
 
-    return {
-      id: manifestItem.id,
-      filename: manifestItem.filename,
-      video: manifestItem.video,
-      thumbnail: manifestItem.thumbnail,
-      category,
-      views: activeViews,
-      suggestedViews,
-      viewsConfirmed,
-      client: override.client,
-      title: override.title,
-      featured: override.featured ?? false,
-      order: override.order ?? 100 + index,
-    };
-  })
-  .sort((a, b) => {
-    if (a.featured !== b.featured) {
-      return a.featured ? -1 : 1;
-    }
-    return (a.order ?? 999) - (b.order ?? 999);
-  });
+      if (
+        seenIds.has(normId) ||
+        seenVideos.has(normVideo) ||
+        seenFilenames.has(normFile)
+      ) {
+        return false;
+      }
+
+      seenIds.add(normId);
+      seenVideos.add(normVideo);
+      seenFilenames.add(normFile);
+      return true;
+    })
+    .map((manifestItem, index): PortfolioItem => {
+      const override = PORTFOLIO_METADATA[manifestItem.id] ?? {};
+      const category =
+        override.category ?? normalizeCategory(manifestItem.inferredCategory);
+
+      const suggestedViews =
+        override.suggestedViews ??
+        manifestItem.suggestedViews ??
+        manifestItem.suggestedViewsFromFilename ??
+        null;
+      const viewsConfirmed = Boolean(override.viewsConfirmed);
+      const activeViews = viewsConfirmed
+        ? override.views ?? suggestedViews ?? null
+        : null;
+
+      return {
+        id: manifestItem.id,
+        filename: manifestItem.filename,
+        video: manifestItem.video,
+        thumbnail: manifestItem.thumbnail,
+        category,
+        views: activeViews,
+        suggestedViews,
+        viewsConfirmed,
+        client: override.client,
+        title: override.title,
+        featured: override.featured ?? false,
+        order: override.order ?? 100 + index,
+      };
+    })
+    .sort((a, b) => {
+      if (a.featured !== b.featured) {
+        return a.featured ? -1 : 1;
+      }
+      return (a.order ?? 999) - (b.order ?? 999);
+    });
+})();
 
 export function getPortfolioItemsByCategory(
   category: "All" | ProjectCategory
@@ -517,8 +537,8 @@ export const projects: Project[] = [
     industryLabel: "Automotive & Detailing Studio",
     description:
       "High-contrast studio cinematography capturing paint correction, ceramic coating reflections, and workshop craftsmanship.",
-    coverImage: "/images/portfolio/thumbnails/automotive-detailing-studio.webp",
-    coverVideo: "/videos/projects/automotive-detailing-studio.mp4",
+    coverImage: "/images/portfolio/thumbnails/45-6k-views.webp",
+    coverVideo: "/videos/projects/45.6k%20Views.mp4",
     services: [
       "Video Production",
       "Reels Production",
@@ -533,8 +553,8 @@ export const projects: Project[] = [
       "We filmed tight specular highlights, tactile application sequences, and dramatic before-and-after surface finishes under studio lighting to communicate uncompromising workshop standards.",
     videoGallery: [
       {
-        src: "/videos/projects/automotive-detailing-studio.mp4",
-        poster: "/images/portfolio/thumbnails/automotive-detailing-studio.webp",
+        src: "/videos/projects/45.6k%20Views.mp4",
+        poster: "/images/portfolio/thumbnails/45-6k-views.webp",
         title: "Detailing Studio Production Reel",
       },
     ],
@@ -581,8 +601,8 @@ export const projects: Project[] = [
     industryLabel: "Manufacturing & Industrial",
     description:
       "Visualizing heavy machinery, shop-floor discipline, and engineering reliability for modern B2B brand perception.",
-    coverImage: "/images/portfolio/thumbnails/manufacturing-brand-film.webp",
-    coverVideo: "/videos/projects/manufacturing-brand-film.mp4",
+    coverImage: "/images/portfolio/thumbnails/68k-plus-views.webp",
+    coverVideo: "/videos/projects/68k%2Bviews.mp4",
     services: ["Video Production", "Content Production", "Brand Strategy"],
     overview:
       "Manufacturing enterprises often possess extraordinary infrastructure that remains invisible to prospective B2B partners and distributors. This production translated industrial capability into a cohesive visual narrative.",
@@ -592,8 +612,8 @@ export const projects: Project[] = [
       "We focused on rhythm, machinery precision, quality inspection stages, and human oversight—creating a visual asset suitable for both corporate presentations and digital channels.",
     videoGallery: [
       {
-        src: "/videos/projects/manufacturing-brand-film.mp4",
-        poster: "/images/portfolio/thumbnails/manufacturing-brand-film.webp",
+        src: "/videos/projects/68k%2Bviews.mp4",
+        poster: "/images/portfolio/thumbnails/68k-plus-views.webp",
         title: "Manufacturing Operations Film",
       },
     ],
