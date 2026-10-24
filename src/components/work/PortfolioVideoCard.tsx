@@ -25,39 +25,32 @@ export function PortfolioVideoCard({
   const cardRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  const [hasActivatedOnce, setHasActivatedOnce] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [thumbError, setThumbError] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [triedFallbackUrl, setTriedFallbackUrl] = useState(false);
+
+  const primaryVideoUrl = `/videos/projects/${encodeURIComponent(item.filename)}`;
+  const fallbackVideoUrl = item.video;
+  const activeVideoSrc = triedFallbackUrl ? fallbackVideoUrl : primaryVideoUrl;
 
   const verifiedViewsLabel = formatPortfolioViews(item.views);
   const hasThumbnail = Boolean(item.thumbnail) && !thumbError;
   const isTopPerformer =
     item.id === "200million-plus-views" || verifiedViewsLabel === "200M+ VIEWS";
 
-  // Sync play/pause state with parent activeVideoId so only one video plays at a time
+  // Pause video when another card becomes active
   useEffect(() => {
     const videoEl = videoRef.current;
     if (!videoEl) return;
 
-    if (isActive) {
-      const playPromise = videoEl.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true);
-          })
-          .catch(() => {
-            setIsPlaying(false);
-          });
-      }
-    } else {
+    if (!isActive) {
       if (!videoEl.paused) {
         videoEl.pause();
       }
       setIsPlaying(false);
     }
-  }, [isActive, hasActivatedOnce]);
+  }, [isActive]);
 
   // Automatically pause playback if the card scrolls out of the viewport
   useEffect(() => {
@@ -85,17 +78,47 @@ export function PortfolioVideoCard({
     };
   }, [isActive, item.id, onDeactivate]);
 
-  const handlePlayTrigger = () => {
-    if (videoError) return;
-    if (!hasActivatedOnce) {
-      setHasActivatedOnce(true);
+  const startVideoPlayback = (videoEl: HTMLVideoElement) => {
+    const playPromise = videoEl.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch(() => {
+          // If unmuted autoplay is restricted by the browser, fall back to muted playback immediately
+          videoEl.muted = true;
+          videoEl
+            .play()
+            .then(() => {
+              setIsPlaying(true);
+            })
+            .catch(() => {
+              setIsPlaying(false);
+            });
+        });
     }
+  };
+
+  const handlePlayTrigger = () => {
+    if (videoError) {
+      setVideoError(false);
+    }
+
+    const videoEl = videoRef.current;
+
     if (isActive && isPlaying) {
-      videoRef.current?.pause();
+      videoEl?.pause();
       setIsPlaying(false);
       onDeactivate(item.id);
-    } else {
-      onActivate(item.id);
+      return;
+    }
+
+    onActivate(item.id);
+
+    if (videoEl) {
+      videoEl.muted = false;
+      startVideoPlayback(videoEl);
     }
   };
 
@@ -193,11 +216,11 @@ export function PortfolioVideoCard({
           ) : null}
         </div>
 
-        {/* Active Video Element (Mounted only on explicit click, preload="none", object-contain) */}
-        {hasActivatedOnce && !videoError && (
+        {/* Video Element (Always mounted with preload="none" so synchronous click gesture play() succeeds across iOS Safari & Chrome) */}
+        {!videoError && (
           <video
             ref={videoRef}
-            src={item.video}
+            src={activeVideoSrc}
             poster={hasThumbnail ? item.thumbnail : undefined}
             preload="none"
             playsInline
@@ -214,6 +237,10 @@ export function PortfolioVideoCard({
               onDeactivate(item.id);
             }}
             onError={() => {
+              if (!triedFallbackUrl && primaryVideoUrl !== fallbackVideoUrl) {
+                setTriedFallbackUrl(true);
+                return;
+              }
               setVideoError(true);
               setIsPlaying(false);
               onDeactivate(item.id);

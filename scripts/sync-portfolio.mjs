@@ -39,8 +39,8 @@ function toStableId(filename) {
  * Build a safe public URL path for a filename inside public/videos/projects/.
  */
 function toPublicVideoUrl(filename) {
-  // Encode each segment safely while keeping standard URL characters readable
-  const encoded = encodeURIComponent(filename).replace(/%2B/gi, "+");
+  // Encode each filename segment with RFC-3986 encodeURIComponent so + (%2B) and spaces (%20) resolve reliably on Vercel CDN and Next.js
+  const encoded = encodeURIComponent(filename);
   return `/videos/projects/${encoded}`;
 }
 
