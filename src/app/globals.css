@@ -1,0 +1,239 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #171815;
+  --bg-secondary: #20211f;
+  --bg-elevated: #282a27;
+  --text-primary: #f3f0e8;
+  --text-secondary: #aaafa5;
+  --accent-lime: #d8ff3e;
+  --accent-orange: #ff6b35;
+  --border-subtle: rgba(243, 240, 232, 0.12);
+  --border-lime-muted: rgba(216, 255, 62, 0.28);
+  --glass-surface: rgba(29, 32, 27, 0.76);
+  --glass-surface-strong: rgba(23, 24, 21, 0.88);
+  --glass-border: rgba(243, 240, 232, 0.14);
+}
+
+@layer base {
+  html {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    selection-background-color: #d8ff3e;
+    selection-color: #171815;
+  }
+
+  ::selection {
+    background-color: rgba(216, 255, 62, 0.32);
+    color: #f3f0e8;
+  }
+
+  :focus-visible {
+    outline: 2px solid #d8ff3e;
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Dark Studio Translucent Surface */
+  .glass-surface {
+    background-color: rgba(29, 32, 27, 0.78);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgba(243, 240, 232, 0.14);
+    box-shadow:
+      0 14px 36px -10px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 0 rgba(243, 240, 232, 0.08);
+  }
+
+  /* Stronger Dark Studio Glass Surface for Navigation, Cards & CTAs */
+  .glass-surface-strong {
+    background-color: rgba(23, 24, 21, 0.88);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(243, 240, 232, 0.15);
+    box-shadow:
+      0 22px 54px -14px rgba(0, 0, 0, 0.65),
+      inset 0 1px 0 0 rgba(243, 240, 232, 0.1);
+  }
+
+  /* Dark-on-media glass pill for video controls & project frame labels */
+  .glass-media-pill {
+    background-color: rgba(23, 24, 21, 0.86);
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    border: 1px solid rgba(243, 240, 232, 0.18);
+    box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Studio Ambient Atmosphere Layers (Dark Unified) */
+  .studio-ambient-hero {
+    background-color: #20211f;
+    background-image:
+      radial-gradient(
+        50% 52% at 74% 32%,
+        rgba(216, 255, 62, 0.085) 0%,
+        rgba(216, 255, 62, 0.02) 48%,
+        transparent 100%
+      ),
+      linear-gradient(
+        to right,
+        rgba(243, 240, 232, 0.04) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(243, 240, 232, 0.04) 1px,
+        transparent 1px
+      );
+    background-size: 100% 100%, 48px 48px, 48px 48px;
+  }
+
+  .studio-ambient-subtle {
+    background-color: #171815;
+    background-image:
+      radial-gradient(
+        50% 60% at 50% 0%,
+        rgba(216, 255, 62, 0.06) 0%,
+        transparent 75%
+      ),
+      linear-gradient(
+        to right,
+        rgba(243, 240, 232, 0.035) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(243, 240, 232, 0.035) 1px,
+        transparent 1px
+      );
+    background-size: 100% 100%, 48px 48px, 48px 48px;
+  }
+
+  /* Deep Charcoal Studio Grid & Restrained Lime Glow */
+  .studio-dark-grid {
+    background-color: #20211f;
+    background-image:
+      radial-gradient(
+        48% 50% at 74% 38%,
+        rgba(216, 255, 62, 0.09) 0%,
+        rgba(216, 255, 62, 0.02) 48%,
+        transparent 100%
+      ),
+      linear-gradient(
+        to right,
+        rgba(243, 240, 232, 0.04) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(243, 240, 232, 0.04) 1px,
+        transparent 1px
+      );
+    background-size: 100% 100%, 48px 48px, 48px 48px;
+  }
+
+  /* Secondary Deep Ink Technical Grid */
+  .studio-ink-grid {
+    background-color: #171815;
+    background-image:
+      linear-gradient(
+        to right,
+        rgba(243, 240, 232, 0.038) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(243, 240, 232, 0.038) 1px,
+        transparent 1px
+      );
+    background-size: 52px 52px;
+  }
+
+  .animate-editorial-marquee {
+    animation: editorial-marquee 34s linear infinite;
+  }
+
+  .animate-editorial-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  .animate-orbit-slow {
+    animation: orbit-slow 28s linear infinite;
+  }
+}
+
+@keyframes editorial-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes orbit-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fallback when backdrop-filter is unsupported */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-surface {
+    background-color: #1d201b;
+    border-color: rgba(243, 240, 232, 0.14);
+  }
+
+  .glass-surface-strong {
+    background-color: #171815;
+    border-color: rgba(243, 240, 232, 0.16);
+  }
+
+  .glass-media-pill {
+    background-color: #171815;
+    border-color: rgba(243, 240, 232, 0.2);
+  }
+}
+
+/* Mobile performance optimization: lighter blur on small screens */
+@media (max-width: 640px) {
+  .glass-surface {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(29, 32, 27, 0.9);
+  }
+
+  .glass-surface-strong {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(23, 24, 21, 0.94);
+  }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
