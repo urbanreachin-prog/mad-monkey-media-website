@@ -52,6 +52,8 @@ export interface PortfolioItem {
   client?: string;
   /** Optional clean title — omitted on card if not set */
   title?: string;
+  /** Optional concise project-specific description grounded in actual video content */
+  description?: string;
   /** Whether to prioritize this video at the top of the Work gallery */
   featured: boolean;
   /** Optional sort order (lower numbers appear first) */
@@ -76,6 +78,7 @@ export interface PortfolioMetadataOverride {
   viewsConfirmed?: boolean;
   client?: string;
   title?: string;
+  description?: string;
   featured?: boolean;
   order?: number;
 }
@@ -206,7 +209,9 @@ export const PORTFOLIO_METADATA: Record<string, PortfolioMetadataOverride> = {
   },
   "podcast-trailer": {
     category: "Personal Branding",
-    title: "Podcast Trailer",
+    title: "Podcast Trailer & Personal Branding",
+    description:
+      "Multi-speaker finance and investment podcast trailer focused on Indian market trends—combining studio-lit commentary, animated market-fall chart overlays, and atmospheric color-graded hooks.",
     suggestedViews: null,
     views: null,
     viewsConfirmed: false,
@@ -225,7 +230,9 @@ export const PORTFOLIO_METADATA: Record<string, PortfolioMetadataOverride> = {
   },
   "fitness-wellness": {
     category: "Other",
-    title: "Fitness & Wellness",
+    title: "Fitness & Wellness Campaign",
+    description:
+      "Presenter-led seasonal fitness campaign filmed on the gym floor, pairing snowfall and warm ember visual effects with layered 3D depth typography to highlight a winter training offer.",
     suggestedViews: null,
     views: null,
     viewsConfirmed: false,
@@ -234,7 +241,9 @@ export const PORTFOLIO_METADATA: Record<string, PortfolioMetadataOverride> = {
   },
   "healthcare": {
     category: "Other",
-    title: "Healthcare",
+    title: "Healthcare Brand Campaign",
+    description:
+      "Dermatology and skincare clinic reel addressing pigmentation concerns—combining a patient query hook, close-up skin diagnostics, and in-clinic consultation visuals to communicate safe medical care.",
     suggestedViews: null,
     views: null,
     viewsConfirmed: false,
@@ -243,7 +252,9 @@ export const PORTFOLIO_METADATA: Record<string, PortfolioMetadataOverride> = {
   },
   "gym-promotion": {
     category: "Other",
-    title: "GYM Promotion",
+    title: "Gym Promotion Campaign",
+    description:
+      "On-location gym membership promo showcasing strength-training zones and facility interiors, elevated with rotoscoped 3D motion typography and clear promotional offer callouts.",
     suggestedViews: null,
     views: null,
     viewsConfirmed: false,
@@ -252,7 +263,9 @@ export const PORTFOLIO_METADATA: Record<string, PortfolioMetadataOverride> = {
   },
   "mad-monkey-edit": {
     category: "Other",
-    title: "Mad Monkey Edit",
+    title: "Mad Monkey Media — Creative Edit",
+    description:
+      "Outdoor walk-and-talk agency reel for Mad Monkey Media on building business visibility through strategic content, crafted with tracked 3D graphics, HUD callouts, and kinetic typography.",
     suggestedViews: null,
     views: null,
     viewsConfirmed: false,
@@ -441,6 +454,7 @@ export const portfolioItems: PortfolioItem[] = (() => {
         viewsConfirmed,
         client: override.client,
         title: override.title,
+        description: override.description,
         featured: override.featured ?? false,
         order: override.order ?? 100 + index,
       };

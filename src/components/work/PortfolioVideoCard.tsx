@@ -25,14 +25,14 @@ const DESCRIPTIVE_FILENAME_TITLES: Record<string, string> = {
   "before-vs-after": "Before vs. After Showcase",
   "ai-talking-heads": "AI Talking Heads Production",
   "gym-edits": "Gym & Fitness Promotional Edit",
-  "mad-monkey-edit": "Mad Monkey Edit",
+  "mad-monkey-edit": "Mad Monkey Media — Creative Edit",
   "medical-genre": "Medical & Healthcare Reel",
   "most-professional-one": "Executive Studio Production",
   "most-popular-one": "Automotive Studio Detailing Reel",
-  "fitness-wellness": "Fitness & Wellness",
-  "healthcare": "Healthcare",
-  "podcast-trailer": "Podcast Trailer",
-  "gym-promotion": "GYM Promotion",
+  "fitness-wellness": "Fitness & Wellness Campaign",
+  "healthcare": "Healthcare Brand Campaign",
+  "podcast-trailer": "Podcast Trailer & Personal Branding",
+  "gym-promotion": "Gym Promotion Campaign",
 };
 
 /**
@@ -80,6 +80,7 @@ function resolveReelMetadata(item: PortfolioItem): {
       : null;
 
   const description =
+    item.description ||
     directProject?.description ||
     "Short-form vertical reel crafted for audience retention and brand impact.";
 
