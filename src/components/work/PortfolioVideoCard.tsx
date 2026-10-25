@@ -25,10 +25,14 @@ const DESCRIPTIVE_FILENAME_TITLES: Record<string, string> = {
   "before-vs-after": "Before vs. After Showcase",
   "ai-talking-heads": "AI Talking Heads Production",
   "gym-edits": "Gym & Fitness Promotional Edit",
-  "mad-monkey-edit": "Mad Monkey Studio Edit",
+  "mad-monkey-edit": "Mad Monkey Edit",
   "medical-genre": "Medical & Healthcare Reel",
   "most-professional-one": "Executive Studio Production",
   "most-popular-one": "Automotive Studio Detailing Reel",
+  "fitness-wellness": "Fitness & Wellness",
+  "healthcare": "Healthcare",
+  "podcast-trailer": "Podcast Trailer",
+  "gym-promotion": "GYM Promotion",
 };
 
 /**
@@ -203,7 +207,11 @@ export function PortfolioVideoCard({
     <article
       ref={cardRef}
       className={`group relative overflow-hidden rounded-2xl border transition-all duration-300 bg-studio-charcoalDeep ${
-        isList ? "flex flex-row items-stretch" : "flex flex-col h-full"
+        isList
+          ? isActive
+            ? "flex flex-col sm:flex-row items-stretch"
+            : "flex flex-row items-stretch"
+          : "flex flex-col h-full"
       } ${
         isActive
           ? "border-studio-lime shadow-[0_0_26px_rgba(216,255,62,0.16)]"
@@ -216,7 +224,9 @@ export function PortfolioVideoCard({
       <div
         className={`relative aspect-[9/16] overflow-hidden bg-studio-ink ${
           isList
-            ? "w-32 min-[420px]:w-36 sm:w-44 shrink-0"
+            ? isActive
+              ? "w-full sm:w-44 shrink-0"
+              : "w-28 min-[380px]:w-32 min-[440px]:w-36 sm:w-44 shrink-0"
             : "w-full"
         }`}
       >
@@ -228,7 +238,7 @@ export function PortfolioVideoCard({
             fill
             sizes={
               isList
-                ? "180px"
+                ? "(max-width: 640px) 144px, 180px"
                 : "(max-width: 420px) 94vw, (max-width: 1024px) 48vw, 24vw"
             }
             priority={priority}
@@ -265,8 +275,12 @@ export function PortfolioVideoCard({
         )}
 
         {/* Top of Thumbnail: Category Badge & Top Performer / Playing Status */}
-        <div className="pointer-events-none absolute top-2.5 left-2.5 right-2.5 sm:top-3 sm:left-3 sm:right-3 z-10 flex items-center justify-between gap-1.5">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-studio-cream/15 bg-studio-ink/75 backdrop-blur-md px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-studio-cream/95 truncate">
+        <div className="pointer-events-none absolute top-2 left-2 right-2 sm:top-3 sm:left-3 sm:right-3 z-10 flex items-center justify-between gap-1.5">
+          <span
+            className={`items-center gap-1.5 rounded-full border border-studio-cream/15 bg-studio-ink/75 backdrop-blur-md px-2 sm:px-2.5 py-1 text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.1em] text-studio-cream/95 max-w-full truncate ${
+              isList && !isActive ? "hidden sm:inline-flex" : "inline-flex"
+            }`}
+          >
             <span
               className="h-1.5 w-1.5 shrink-0 rounded-full bg-studio-lime"
               aria-hidden="true"
@@ -360,7 +374,7 @@ export function PortfolioVideoCard({
           >
             <span
               className={`flex items-center justify-center rounded-full border border-studio-cream/25 bg-studio-ink/60 text-studio-cream shadow-[0_8px_24px_rgba(0,0,0,0.45)] backdrop-blur-md transition-all duration-300 group-hover:scale-105 group-hover:border-studio-lime group-hover:bg-studio-lime group-hover:text-studio-ink group-hover:shadow-[0_0_22px_rgba(216,255,62,0.35)] ${
-                isList ? "h-11 w-11" : "h-12 w-12 sm:h-14 sm:w-14"
+                isList ? "h-10 w-10 sm:h-11 sm:w-11" : "h-12 w-12 sm:h-14 sm:w-14"
               }`}
             >
               <Play
@@ -375,7 +389,11 @@ export function PortfolioVideoCard({
 
         {/* Bottom of Thumbnail: Existing Confirmed View-Count Badge Only */}
         {!isActive && item.viewsConfirmed && verifiedViewsLabel && (
-          <div className="pointer-events-none absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-3 sm:left-3 sm:right-3 z-10 flex items-center justify-start">
+          <div
+            className={`pointer-events-none absolute bottom-2 left-2 right-2 sm:bottom-3 sm:left-3 sm:right-3 z-10 items-center justify-start ${
+              isList ? "hidden sm:flex" : "flex"
+            }`}
+          >
             <div
               className={
                 isTopPerformer
@@ -392,26 +410,40 @@ export function PortfolioVideoCard({
 
       {/* Below Thumbnail (or Right Column in List Mode): Project/Client Name & Short Existing Description */}
       <div
-        className={`flex flex-1 flex-col justify-between bg-studio-charcoalDeep ${
+        className={`flex min-w-0 flex-1 flex-col justify-between bg-studio-charcoalDeep ${
           isList
-            ? "border-l border-studio-cream/10 p-4 sm:p-5"
+            ? isActive
+              ? "border-t sm:border-t-0 sm:border-l border-studio-cream/10 p-3.5 sm:p-5"
+              : "border-l border-studio-cream/10 p-3.5 sm:p-5"
             : "border-t border-studio-cream/10 px-3.5 py-3 sm:px-4 sm:py-3.5"
         }`}
       >
-        <div>
-          {isList && isTopPerformer && (
-            <div className="mb-2 inline-flex items-center gap-1.5 rounded-full border border-studio-lime/50 bg-studio-lime/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-studio-lime">
-              <span
-                className="h-1.5 w-1.5 rounded-full bg-studio-lime"
-                aria-hidden="true"
-              />
-              <span>MOST VIEWED</span>
+        <div className="min-w-0">
+          {isList && (
+            <div className="mb-1.5 flex flex-wrap items-center gap-1.5">
+              <span className="inline-flex sm:hidden items-center gap-1.5 rounded-full border border-studio-cream/15 bg-studio-ink/70 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-studio-cream/90">
+                <span
+                  className="h-1.5 w-1.5 shrink-0 rounded-full bg-studio-lime"
+                  aria-hidden="true"
+                />
+                <span>{item.category}</span>
+              </span>
+
+              {isTopPerformer && (
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-studio-lime/50 bg-studio-lime/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-studio-lime">
+                  <span
+                    className="h-1.5 w-1.5 rounded-full bg-studio-lime"
+                    aria-hidden="true"
+                  />
+                  <span>MOST VIEWED</span>
+                </span>
+              )}
             </div>
           )}
 
           <h2
             className={`font-heading font-bold tracking-tight text-studio-cream line-clamp-1 transition-colors duration-200 group-hover:text-studio-lime ${
-              isList ? "text-base sm:text-lg" : "text-sm sm:text-[15px]"
+              isList ? "text-sm sm:text-lg" : "text-sm sm:text-[15px]"
             }`}
           >
             {heading}
@@ -426,7 +458,7 @@ export function PortfolioVideoCard({
           <p
             className={`mt-1 text-studio-muted leading-relaxed ${
               isList
-                ? "text-xs sm:text-sm line-clamp-3"
+                ? "text-xs sm:text-sm line-clamp-2 sm:line-clamp-3"
                 : "text-[11px] sm:text-xs line-clamp-2"
             }`}
           >
@@ -435,11 +467,11 @@ export function PortfolioVideoCard({
         </div>
 
         {isList && (
-          <div className="mt-4 pt-3 border-t border-studio-cream/10 flex items-center justify-between gap-3">
+          <div className="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-studio-cream/10 flex flex-wrap items-center justify-between gap-2">
             <button
               type="button"
               onClick={handlePlayTrigger}
-              className="inline-flex items-center gap-2 rounded-full border border-studio-cream/15 bg-studio-charcoal px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.1em] text-studio-cream transition-colors hover:border-studio-lime hover:text-studio-lime"
+              className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-studio-cream/15 bg-studio-charcoal px-3 sm:px-3.5 py-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.1em] text-studio-cream transition-colors hover:border-studio-lime hover:text-studio-lime"
             >
               {isActive && isPlaying ? (
                 <>
@@ -455,8 +487,8 @@ export function PortfolioVideoCard({
             </button>
 
             {item.viewsConfirmed && verifiedViewsLabel && (
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.08em] text-studio-lime">
-                <Eye className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold uppercase tracking-[0.08em] text-studio-lime">
+                <Eye className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0" aria-hidden="true" />
                 <span>{verifiedViewsLabel}</span>
               </span>
             )}

@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-24T12:50:21.328Z",
-  "totalVideos": 22,
+  "generatedAt": "2026-10-25T21:00:07.671Z",
+  "totalVideos": 26,
   "ignoredFiles": [],
   "items": [
     {
@@ -147,11 +147,44 @@
       "viewsConfirmed": false
     },
     {
+      "id": "fitness-wellness",
+      "filename": "Fitness & wellness.mp4",
+      "video": "/videos/projects/Fitness%20%26%20wellness.mp4",
+      "thumbnail": "/images/portfolio/thumbnails/fitness-wellness.webp",
+      "fileSizeBytes": 9178889,
+      "inferredCategory": "Other",
+      "suggestedViews": null,
+      "suggestedViewsFromFilename": null,
+      "viewsConfirmed": false
+    },
+    {
       "id": "gym-edits",
       "filename": "Gym edits.mp4",
       "video": "/videos/projects/Gym%20edits.mp4",
       "thumbnail": "/images/portfolio/thumbnails/gym-edits.webp",
       "fileSizeBytes": 4923732,
+      "inferredCategory": "Other",
+      "suggestedViews": null,
+      "suggestedViewsFromFilename": null,
+      "viewsConfirmed": false
+    },
+    {
+      "id": "gym-promotion",
+      "filename": "GYM promotion.mp4",
+      "video": "/videos/projects/GYM%20promotion.mp4",
+      "thumbnail": "/images/portfolio/thumbnails/gym-promotion.webp",
+      "fileSizeBytes": 10855704,
+      "inferredCategory": "Other",
+      "suggestedViews": null,
+      "suggestedViewsFromFilename": null,
+      "viewsConfirmed": false
+    },
+    {
+      "id": "healthcare",
+      "filename": "Healthcare.mp4",
+      "video": "/videos/projects/Healthcare.mp4",
+      "thumbnail": "/images/portfolio/thumbnails/healthcare.webp",
+      "fileSizeBytes": 7881011,
       "inferredCategory": "Other",
       "suggestedViews": null,
       "suggestedViewsFromFilename": null,
@@ -207,6 +240,17 @@
       "video": "/videos/projects/Most%20professional%20one.mp4",
       "thumbnail": "/images/portfolio/thumbnails/most-professional-one.webp",
       "fileSizeBytes": 10625613,
+      "inferredCategory": "Other",
+      "suggestedViews": null,
+      "suggestedViewsFromFilename": null,
+      "viewsConfirmed": false
+    },
+    {
+      "id": "podcast-trailer",
+      "filename": "Podcast trailer.mp4",
+      "video": "/videos/projects/Podcast%20trailer.mp4",
+      "thumbnail": "/images/portfolio/thumbnails/podcast-trailer.webp",
+      "fileSizeBytes": 8851487,
       "inferredCategory": "Other",
       "suggestedViews": null,
       "suggestedViewsFromFilename": null,

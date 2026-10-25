@@ -204,6 +204,15 @@ export const PORTFOLIO_METADATA: Record<string, PortfolioMetadataOverride> = {
     featured: true,
     order: 14,
   },
+  "podcast-trailer": {
+    category: "Personal Branding",
+    title: "Podcast Trailer",
+    suggestedViews: null,
+    views: null,
+    viewsConfirmed: false,
+    featured: true,
+    order: 0.3,
+  },
 
   // --- OTHER / GENERAL CAMPAIGNS ---
   "200million-plus-views": {
@@ -213,6 +222,42 @@ export const PORTFOLIO_METADATA: Record<string, PortfolioMetadataOverride> = {
     viewsConfirmed: true,
     featured: true,
     order: 0,
+  },
+  "fitness-wellness": {
+    category: "Other",
+    title: "Fitness & Wellness",
+    suggestedViews: null,
+    views: null,
+    viewsConfirmed: false,
+    featured: true,
+    order: 0.1,
+  },
+  "healthcare": {
+    category: "Other",
+    title: "Healthcare",
+    suggestedViews: null,
+    views: null,
+    viewsConfirmed: false,
+    featured: true,
+    order: 0.2,
+  },
+  "gym-promotion": {
+    category: "Other",
+    title: "GYM Promotion",
+    suggestedViews: null,
+    views: null,
+    viewsConfirmed: false,
+    featured: true,
+    order: 0.4,
+  },
+  "mad-monkey-edit": {
+    category: "Other",
+    title: "Mad Monkey Edit",
+    suggestedViews: null,
+    views: null,
+    viewsConfirmed: false,
+    featured: true,
+    order: 0.5,
   },
   "6-3million-plus-views": {
     category: "Other",
@@ -253,14 +298,6 @@ export const PORTFOLIO_METADATA: Record<string, PortfolioMetadataOverride> = {
     viewsConfirmed: false,
     featured: false,
     order: 20,
-  },
-  "mad-monkey-edit": {
-    category: "Other",
-    suggestedViews: null,
-    views: null,
-    viewsConfirmed: false,
-    featured: false,
-    order: 21,
   },
   "medical-genre": {
     category: "Other",

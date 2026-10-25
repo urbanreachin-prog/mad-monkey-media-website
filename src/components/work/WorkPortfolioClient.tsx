@@ -14,7 +14,7 @@ export function WorkPortfolioClient() {
     "All"
   );
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
-  const [layoutMode, setLayoutMode] = useState<"grid" | "list">("grid");
+  const [layoutMode, setLayoutMode] = useState<"grid" | "list">("list");
 
   const categories = getActivePortfolioCategories();
   const filteredItems = getPortfolioItemsByCategory(activeCategory);

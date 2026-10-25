@@ -307,6 +307,9 @@ async function main() {
 
   for (const entry of allEntries) {
     if (!entry.isFile()) continue;
+    if (entry.name.toLowerCase().endsWith(".optimized.mp4")) {
+      continue;
+    }
     if (DUPLICATE_VIDEO_FILES_TO_IGNORE.has(entry.name.toLowerCase())) {
       ignoredFiles.push(entry.name);
       continue;
