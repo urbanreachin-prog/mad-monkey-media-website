@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useState } from "react";
+import { LayoutGrid, List } from "lucide-react";
 import {
   ProjectCategory,
   getActivePortfolioCategories,
@@ -13,6 +14,7 @@ export function WorkPortfolioClient() {
     "All"
   );
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+  const [layoutMode, setLayoutMode] = useState<"grid" | "list">("grid");
 
   const categories = getActivePortfolioCategories();
   const filteredItems = getPortfolioItemsByCategory(activeCategory);
@@ -32,8 +34,8 @@ export function WorkPortfolioClient() {
 
   return (
     <div>
-      {/* Compact Category Filter Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-7 border-b border-studio-cream/10">
+      {/* Compact Category Filter Bar + Clean Grid/List Toggle */}
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-6 sm:pb-7 border-b border-studio-cream/10">
         <div
           role="tablist"
           aria-label="Filter portfolio videos by category"
@@ -75,18 +77,61 @@ export function WorkPortfolioClient() {
           })}
         </div>
 
-        <div className="text-xs font-mono uppercase tracking-[0.14em] text-studio-muted shrink-0">
-          Showing{" "}
-          <span className="text-studio-lime font-bold">
-            {filteredItems.length}
-          </span>{" "}
-          {filteredItems.length === 1 ? "Reel" : "Reels"}
+        <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0">
+          <div className="text-xs font-mono uppercase tracking-[0.14em] text-studio-muted">
+            Showing{" "}
+            <span className="text-studio-lime font-bold">
+              {filteredItems.length}
+            </span>{" "}
+            {filteredItems.length === 1 ? "Reel" : "Reels"}
+          </div>
+
+          <div
+            role="group"
+            aria-label="Portfolio layout view"
+            className="inline-flex items-center rounded-full border border-studio-cream/12 bg-studio-charcoalDeep p-1"
+          >
+            <button
+              type="button"
+              onClick={() => setLayoutMode("grid")}
+              aria-pressed={layoutMode === "grid"}
+              aria-label="Grid view"
+              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] transition-colors ${
+                layoutMode === "grid"
+                  ? "bg-studio-lime text-studio-ink"
+                  : "text-studio-muted hover:text-studio-cream"
+              }`}
+            >
+              <LayoutGrid className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className="hidden sm:inline">Grid</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setLayoutMode("list")}
+              aria-pressed={layoutMode === "list"}
+              aria-label="List view"
+              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] transition-colors ${
+                layoutMode === "list"
+                  ? "bg-studio-lime text-studio-ink"
+                  : "text-studio-muted hover:text-studio-cream"
+              }`}
+            >
+              <List className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className="hidden sm:inline">List</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Portrait 9:16 Responsive Video Grid */}
+      {/* Portrait 9:16 Responsive Video Gallery */}
       {filteredItems.length > 0 ? (
-        <div className="mt-8 sm:mt-10 grid grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 items-start">
+        <div
+          className={
+            layoutMode === "list"
+              ? "mt-7 sm:mt-9 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 items-stretch"
+              : "mt-7 sm:mt-9 grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 items-stretch"
+          }
+        >
           {filteredItems.map((item, index) => (
             <PortfolioVideoCard
               key={item.id}
@@ -95,6 +140,7 @@ export function WorkPortfolioClient() {
               onActivate={handleActivateVideo}
               onDeactivate={handleDeactivateVideo}
               priority={index < 4}
+              layout={layoutMode}
             />
           ))}
         </div>
@@ -118,3 +164,4 @@ export function WorkPortfolioClient() {
     </div>
   );
 }
+

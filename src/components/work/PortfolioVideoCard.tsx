@@ -3,7 +3,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Play, Pause, Eye, AlertCircle, Film } from "lucide-react";
-import { PortfolioItem, formatPortfolioViews } from "@/data/projects";
+import {
+  PortfolioItem,
+  formatPortfolioViews,
+  projects,
+} from "@/data/projects";
 
 interface PortfolioVideoCardProps {
   item: PortfolioItem;
@@ -11,9 +15,76 @@ interface PortfolioVideoCardProps {
   onActivate: (id: string) => void;
   onDeactivate: (id: string) => void;
   priority?: boolean;
+  layout?: "grid" | "list";
 }
 
 const isDev = process.env.NODE_ENV !== "production";
+
+const DESCRIPTIVE_FILENAME_TITLES: Record<string, string> = {
+  "tvs-promotional-video": "TVS Promotional Video",
+  "before-vs-after": "Before vs. After Showcase",
+  "ai-talking-heads": "AI Talking Heads Production",
+  "gym-edits": "Gym & Fitness Promotional Edit",
+  "mad-monkey-edit": "Mad Monkey Studio Edit",
+  "medical-genre": "Medical & Healthcare Reel",
+  "most-professional-one": "Executive Studio Production",
+  "most-popular-one": "Automotive Studio Detailing Reel",
+};
+
+/**
+ * Resolves the existing client/project name and short existing description
+ * from `PORTFOLIO_METADATA` and the `projects` archive in `src/data/projects.ts`
+ * without inventing fake clients or fake project data.
+ */
+function resolveReelMetadata(item: PortfolioItem): {
+  heading: string;
+  subheading: string | null;
+  description: string;
+} {
+  const directProject =
+    projects.find(
+      (p) =>
+        p.coverVideo === item.video ||
+        p.videoGallery?.some((v) => v.src === item.video)
+    ) ?? projects.find((p) => p.category === item.category);
+
+  const matchedGalleryItem = projects
+    .flatMap((p) => p.videoGallery ?? [])
+    .find((v) => v.src === item.video);
+
+  const filenameTitle = DESCRIPTIVE_FILENAME_TITLES[item.id];
+
+  const heading =
+    item.client ||
+    item.title ||
+    matchedGalleryItem?.title ||
+    filenameTitle ||
+    directProject?.title ||
+    directProject?.client ||
+    item.category;
+
+  const secondaryCandidate =
+    item.title ||
+    matchedGalleryItem?.title ||
+    filenameTitle ||
+    directProject?.title ||
+    null;
+
+  const subheading =
+    secondaryCandidate && secondaryCandidate !== heading
+      ? secondaryCandidate
+      : null;
+
+  const description =
+    directProject?.description ||
+    "Short-form vertical reel crafted for audience retention and brand impact.";
+
+  return {
+    heading,
+    subheading,
+    description,
+  };
+}
 
 export function PortfolioVideoCard({
   item,
@@ -21,6 +92,7 @@ export function PortfolioVideoCard({
   onActivate,
   onDeactivate,
   priority = false,
+  layout = "grid",
 }: PortfolioVideoCardProps) {
   const cardRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -38,6 +110,8 @@ export function PortfolioVideoCard({
   const hasThumbnail = Boolean(item.thumbnail) && !thumbError;
   const isTopPerformer =
     item.id === "200million-plus-views" || verifiedViewsLabel === "200M+ VIEWS";
+
+  const { heading, subheading, description } = resolveReelMetadata(item);
 
   // Pause video when another card becomes active
   useEffect(() => {
@@ -122,42 +196,47 @@ export function PortfolioVideoCard({
     }
   };
 
-  const accessibleLabel = item.title
-    ? `Play ${item.title} video`
-    : item.client
-    ? `Play ${item.client} portfolio video`
-    : `Play ${item.category} portfolio reel`;
+  const accessibleLabel = `Play ${heading} (${item.category}) portfolio reel`;
+  const isList = layout === "list";
 
   return (
     <article
       ref={cardRef}
-      className={`group relative flex flex-col overflow-hidden rounded-2xl border transition-all duration-300 bg-studio-charcoalDeep ${
+      className={`group relative overflow-hidden rounded-2xl border transition-all duration-300 bg-studio-charcoalDeep ${
+        isList ? "flex flex-row items-stretch" : "flex flex-col h-full"
+      } ${
         isActive
-          ? "border-studio-lime shadow-[0_0_28px_rgba(216,255,62,0.16)]"
+          ? "border-studio-lime shadow-[0_0_26px_rgba(216,255,62,0.16)]"
           : isTopPerformer
-          ? "border-studio-lime/70 shadow-[0_0_24px_rgba(216,255,62,0.14)] hover:border-studio-lime hover:shadow-[0_0_32px_rgba(216,255,62,0.22)]"
-          : "border-studio-cream/12 hover:border-studio-lime/45"
+          ? "border-studio-lime/65 shadow-[0_0_22px_rgba(216,255,62,0.12)] hover:border-studio-lime hover:shadow-[0_0_28px_rgba(216,255,62,0.2)]"
+          : "border-studio-cream/10 hover:border-studio-lime/45 hover:shadow-[0_12px_30px_-12px_rgba(216,255,62,0.12)]"
       }`}
     >
       {/* 9:16 Portrait Media Frame */}
-      <div className="relative aspect-[9/16] w-full overflow-hidden bg-studio-ink">
-        {/* Poster Thumbnail Layer (Always rendered behind or before video playback) */}
+      <div
+        className={`relative aspect-[9/16] overflow-hidden bg-studio-ink ${
+          isList
+            ? "w-32 min-[420px]:w-36 sm:w-44 shrink-0"
+            : "w-full"
+        }`}
+      >
+        {/* Poster Thumbnail Layer */}
         {hasThumbnail ? (
           <Image
             src={item.thumbnail}
-            alt={
-              item.title ||
-              item.client ||
-              `${item.category} portfolio video thumbnail`
-            }
+            alt={`${heading} — ${item.category} portfolio reel thumbnail`}
             fill
-            sizes="(max-width: 420px) 95vw, (max-width: 768px) 48vw, (max-width: 1200px) 32vw, 24vw"
+            sizes={
+              isList
+                ? "180px"
+                : "(max-width: 420px) 94vw, (max-width: 1024px) 48vw, 24vw"
+            }
             priority={priority}
             onError={() => setThumbError(true)}
-            className={`object-cover transition-transform duration-500 ${
+            className={`object-cover object-center transition-transform duration-500 ease-out ${
               isActive
                 ? "opacity-0 pointer-events-none"
-                : "group-hover:scale-[1.02]"
+                : "group-hover:scale-[1.025]"
             }`}
           />
         ) : (
@@ -177,22 +256,22 @@ export function PortfolioVideoCard({
           </div>
         )}
 
-        {/* Subtle Top & Bottom Editorial Vignette Overlays (when poster is visible) */}
+        {/* Restrained Top & Bottom Vignette so the video thumbnail stays bright and dominant */}
         {!isActive && (
           <div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-studio-ink/90 via-studio-ink/15 to-studio-ink/40"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-studio-ink/75 via-transparent to-studio-ink/35"
             aria-hidden="true"
           />
         )}
 
-        {/* Top Bar: Category Pill, Top Performer Badge & Active Status */}
-        <div className="pointer-events-none absolute top-3 left-3 right-3 z-10 flex items-center justify-between gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-studio-cream/15 bg-studio-ink/75 backdrop-blur-md px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-studio-cream/90">
+        {/* Top of Thumbnail: Category Badge & Top Performer / Playing Status */}
+        <div className="pointer-events-none absolute top-2.5 left-2.5 right-2.5 sm:top-3 sm:left-3 sm:right-3 z-10 flex items-center justify-between gap-1.5">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-studio-cream/15 bg-studio-ink/75 backdrop-blur-md px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-studio-cream/95 truncate">
             <span
-              className="h-1.5 w-1.5 rounded-full bg-studio-lime"
+              className="h-1.5 w-1.5 shrink-0 rounded-full bg-studio-lime"
               aria-hidden="true"
             />
-            {item.category}
+            <span className="truncate">{item.category}</span>
           </span>
 
           {isActive ? (
@@ -200,13 +279,13 @@ export function PortfolioVideoCard({
               type="button"
               onClick={handlePlayTrigger}
               aria-label="Pause video"
-              className="pointer-events-auto inline-flex items-center gap-1.5 rounded-full border border-studio-lime/50 bg-studio-ink/85 backdrop-blur-md px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-studio-lime hover:bg-studio-lime hover:text-studio-ink transition-colors"
+              className="pointer-events-auto inline-flex items-center gap-1 rounded-full border border-studio-lime/55 bg-studio-ink/85 backdrop-blur-md px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-studio-lime hover:bg-studio-lime hover:text-studio-ink transition-colors shrink-0"
             >
-              <Pause className="h-3 w-3 fill-current" aria-hidden="true" />
+              <Pause className="h-2.5 w-2.5 fill-current" aria-hidden="true" />
               <span>Playing</span>
             </button>
-          ) : isTopPerformer ? (
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-studio-lime/60 bg-studio-ink/85 backdrop-blur-md px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-studio-lime shadow-[0_0_14px_rgba(216,255,62,0.2)]">
+          ) : isTopPerformer && !isList ? (
+            <span className="inline-flex items-center gap-1 rounded-full border border-studio-lime/60 bg-studio-ink/85 backdrop-blur-md px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-studio-lime shadow-[0_0_12px_rgba(216,255,62,0.18)] shrink-0">
               <span
                 className="h-1.5 w-1.5 rounded-full bg-studio-lime animate-pulse"
                 aria-hidden="true"
@@ -216,7 +295,7 @@ export function PortfolioVideoCard({
           ) : null}
         </div>
 
-        {/* Video Element (Always mounted with preload="none" so synchronous click gesture play() succeeds across iOS Safari & Chrome) */}
+        {/* Video Element (Mounted with preload="none" for reliable click-to-play across desktop & mobile) */}
         {!videoError && (
           <video
             ref={videoRef}
@@ -255,70 +334,131 @@ export function PortfolioVideoCard({
 
         {/* Graceful Fallback if Video File Fails to Play */}
         {videoError && (
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-studio-ink/95 p-5 text-center">
+          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-studio-ink/95 p-4 text-center">
             <AlertCircle
-              className="h-7 w-7 text-studio-orange mb-2"
+              className="h-6 w-6 text-studio-orange mb-1.5"
               aria-hidden="true"
             />
             <p className="text-xs font-semibold text-studio-cream">
               Video preview unavailable
             </p>
             {isDev && (
-              <p className="mt-1 text-[11px] font-mono text-studio-muted break-all">
+              <p className="mt-1 text-[10px] font-mono text-studio-muted break-all">
                 {item.filename}
               </p>
             )}
           </div>
         )}
 
-        {/* Manual Play Button Overlay (Never triggers on hover; click/tap only) */}
+        {/* Centred Subtle Play Button Overlay */}
         {!isActive && !videoError && (
           <button
             type="button"
             onClick={handlePlayTrigger}
             aria-label={accessibleLabel}
-            className="absolute inset-0 z-10 flex flex-col items-center justify-center w-full h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-studio-lime focus-visible:ring-inset"
+            className="absolute inset-0 z-10 flex items-center justify-center w-full h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-studio-lime focus-visible:ring-inset"
           >
-            <span className="flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full border border-studio-lime/60 bg-studio-ink/80 text-studio-lime shadow-[0_8px_28px_rgba(0,0,0,0.55)] backdrop-blur-md transition-all duration-200 group-hover:scale-105 group-hover:bg-studio-lime group-hover:text-studio-ink group-hover:shadow-[0_0_25px_rgba(216,255,62,0.45)]">
+            <span
+              className={`flex items-center justify-center rounded-full border border-studio-cream/25 bg-studio-ink/60 text-studio-cream shadow-[0_8px_24px_rgba(0,0,0,0.45)] backdrop-blur-md transition-all duration-300 group-hover:scale-105 group-hover:border-studio-lime group-hover:bg-studio-lime group-hover:text-studio-ink group-hover:shadow-[0_0_22px_rgba(216,255,62,0.35)] ${
+                isList ? "h-11 w-11" : "h-12 w-12 sm:h-14 sm:w-14"
+              }`}
+            >
               <Play
-                className="h-6 w-6 translate-x-0.5 fill-current"
+                className={`${
+                  isList ? "h-4 w-4" : "h-5 w-5"
+                } translate-x-0.5 fill-current`}
                 aria-hidden="true"
               />
             </span>
           </button>
         )}
 
-        {/* Bottom Overlay inside Portrait Frame: Clean Confirmed Views & Optional Client/Title */}
-        {!isActive && ((item.viewsConfirmed && verifiedViewsLabel) || item.title || item.client) && (
-          <div className="pointer-events-none absolute bottom-0 inset-x-0 z-10 p-3.5 sm:p-4 flex flex-col justify-end">
-            {/* Prominent Views Badge (Only shown when viewsConfirmed is true) */}
-            {item.viewsConfirmed && verifiedViewsLabel ? (
-              <div
-                className={
-                  isTopPerformer
-                    ? "inline-flex items-center gap-1.5 self-start rounded-full border border-studio-lime bg-studio-lime px-3.5 py-1.5 text-xs sm:text-sm font-extrabold uppercase tracking-[0.12em] text-studio-ink shadow-[0_0_20px_rgba(216,255,62,0.3)]"
-                    : "inline-flex items-center gap-1.5 self-start rounded-full border border-studio-lime/40 bg-studio-ink/85 backdrop-blur-md px-3 py-1 text-xs sm:text-[13px] font-bold uppercase tracking-[0.1em] text-studio-lime shadow-sm"
-                }
-              >
-                <Eye className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                <span>{verifiedViewsLabel}</span>
-              </div>
-            ) : null}
+        {/* Bottom of Thumbnail: Existing Confirmed View-Count Badge Only */}
+        {!isActive && item.viewsConfirmed && verifiedViewsLabel && (
+          <div className="pointer-events-none absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-3 sm:left-3 sm:right-3 z-10 flex items-center justify-start">
+            <div
+              className={
+                isTopPerformer
+                  ? "inline-flex items-center gap-1.5 rounded-full border border-studio-lime bg-studio-lime px-3 py-1 text-[11px] sm:text-xs font-extrabold uppercase tracking-[0.1em] text-studio-ink shadow-[0_0_18px_rgba(216,255,62,0.28)]"
+                  : "inline-flex items-center gap-1.5 rounded-full border border-studio-lime/40 bg-studio-ink/80 backdrop-blur-md px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-studio-lime"
+              }
+            >
+              <Eye className="h-3 w-3 shrink-0" aria-hidden="true" />
+              <span>{verifiedViewsLabel}</span>
+            </div>
+          </div>
+        )}
+      </div>
 
-            {/* Optional Verified Client or Clean Title (Omitted when not set) */}
-            {(item.title || item.client) && (
-              <div className="mt-2">
-                {item.title && (
-                  <h2 className="font-heading text-sm sm:text-base font-bold text-studio-cream leading-snug line-clamp-1">
-                    {item.title}
-                  </h2>
-                )}
-                {item.client && (
-                  <p className="text-[11px] sm:text-xs font-medium text-studio-cream/75 line-clamp-1">
-                    {item.client}
-                  </p>
-                )}
-              </div>
+      {/* Below Thumbnail (or Right Column in List Mode): Project/Client Name & Short Existing Description */}
+      <div
+        className={`flex flex-1 flex-col justify-between bg-studio-charcoalDeep ${
+          isList
+            ? "border-l border-studio-cream/10 p-4 sm:p-5"
+            : "border-t border-studio-cream/10 px-3.5 py-3 sm:px-4 sm:py-3.5"
+        }`}
+      >
+        <div>
+          {isList && isTopPerformer && (
+            <div className="mb-2 inline-flex items-center gap-1.5 rounded-full border border-studio-lime/50 bg-studio-lime/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-studio-lime">
+              <span
+                className="h-1.5 w-1.5 rounded-full bg-studio-lime"
+                aria-hidden="true"
+              />
+              <span>MOST VIEWED</span>
+            </div>
+          )}
+
+          <h2
+            className={`font-heading font-bold tracking-tight text-studio-cream line-clamp-1 transition-colors duration-200 group-hover:text-studio-lime ${
+              isList ? "text-base sm:text-lg" : "text-sm sm:text-[15px]"
+            }`}
+          >
+            {heading}
+          </h2>
+
+          {subheading && (
+            <p className="mt-0.5 text-[11px] font-medium text-studio-cream/75 line-clamp-1">
+              {subheading}
+            </p>
+          )}
+
+          <p
+            className={`mt-1 text-studio-muted leading-relaxed ${
+              isList
+                ? "text-xs sm:text-sm line-clamp-3"
+                : "text-[11px] sm:text-xs line-clamp-2"
+            }`}
+          >
+            {description}
+          </p>
+        </div>
+
+        {isList && (
+          <div className="mt-4 pt-3 border-t border-studio-cream/10 flex items-center justify-between gap-3">
+            <button
+              type="button"
+              onClick={handlePlayTrigger}
+              className="inline-flex items-center gap-2 rounded-full border border-studio-cream/15 bg-studio-charcoal px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.1em] text-studio-cream transition-colors hover:border-studio-lime hover:text-studio-lime"
+            >
+              {isActive && isPlaying ? (
+                <>
+                  <Pause className="h-3 w-3 fill-current" aria-hidden="true" />
+                  <span>Pause Reel</span>
+                </>
+              ) : (
+                <>
+                  <Play className="h-3 w-3 fill-current" aria-hidden="true" />
+                  <span>Play Reel</span>
+                </>
+              )}
+            </button>
+
+            {item.viewsConfirmed && verifiedViewsLabel && (
+              <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.08em] text-studio-lime">
+                <Eye className="h-3.5 w-3.5" aria-hidden="true" />
+                <span>{verifiedViewsLabel}</span>
+              </span>
             )}
           </div>
         )}
@@ -326,3 +466,4 @@ export function PortfolioVideoCard({
     </article>
   );
 }
+
