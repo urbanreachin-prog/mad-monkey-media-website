@@ -235,8 +235,8 @@ export function HeroEditoSection() {
               <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-black overflow-hidden flex items-center justify-center">
                 <video
                   ref={videoRef}
-                  src="/videos/projects/Mad Monkey Edit.mp4"
-                  poster="/images/portfolio/thumbnails/Mad Monkey Edit.webp"
+                  src="/videos/projects/Mad%20monkey%20edit.mp4"
+                  poster="/images/portfolio/thumbnails/mad-monkey-edit.webp"
                   playsInline
                   autoPlay
                   loop

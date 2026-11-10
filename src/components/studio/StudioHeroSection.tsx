@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowUpRight,
   Play,
@@ -198,16 +199,29 @@ export function StudioHeroSection() {
 
                   {/* 9:16 Vertical Master Video Canvas */}
                   <div className="relative aspect-[9/14] sm:aspect-[9/15] w-full rounded-2xl overflow-hidden bg-black mt-3">
+                    {/* Immediate poster underlay so viewport is never black while video buffers */}
+                    <Image
+                      src="/images/portfolio/thumbnails/mad-monkey-edit.webp"
+                      alt="Mad Monkey Media Master Reel"
+                      fill
+                      priority
+                      className="object-cover pointer-events-none"
+                    />
+
                     <video
                       ref={videoRef}
-                      src="/videos/projects/Mad Monkey Edit.mp4"
-                      poster="/images/portfolio/thumbnails/Mad Monkey Edit.webp"
+                      src="/videos/projects/Mad%20monkey%20edit.mp4"
+                      poster="/images/portfolio/thumbnails/mad-monkey-edit.webp"
                       playsInline
                       autoPlay
                       loop
                       muted={isMuted}
-                      className="w-full h-full object-cover"
-                    />
+                      preload="auto"
+                      className="w-full h-full object-cover relative z-[1]"
+                    >
+                      <source src="/videos/projects/Mad%20monkey%20edit.mp4" type="video/mp4" />
+                      <source src="/videos/projects/Mad monkey edit.mp4" type="video/mp4" />
+                    </video>
 
                     {/* Subtle Cinema Vignette Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30 pointer-events-none" />

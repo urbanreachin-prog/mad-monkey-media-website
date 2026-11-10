@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { Reveal } from "@/components/motion/Reveal";
 import { MoveHorizontal, Sparkles, Film } from "lucide-react";
@@ -18,21 +18,44 @@ export function BeforeAfterSlider() {
     setSliderPosition(percentage);
   }, []);
 
-  const handleTouchMove = useCallback(
-    (e: React.TouchEvent) => {
-      if (!isDragging) return;
-      handleMove(e.touches[0].clientX);
-    },
-    [isDragging, handleMove]
-  );
+  const handleStart = (clientX: number) => {
+    setIsDragging(true);
+    handleMove(clientX);
+  };
 
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent) => {
-      if (!isDragging) return;
+  useEffect(() => {
+    if (!isDragging) return;
+
+    const onMouseMove = (e: MouseEvent) => {
       handleMove(e.clientX);
-    },
-    [isDragging, handleMove]
-  );
+    };
+
+    const onMouseUp = () => {
+      setIsDragging(false);
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        handleMove(e.touches[0].clientX);
+      }
+    };
+
+    const onTouchEnd = () => {
+      setIsDragging(false);
+    };
+
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onMouseUp);
+    window.addEventListener("touchmove", onTouchMove);
+    window.addEventListener("touchend", onTouchEnd);
+
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [isDragging, handleMove]);
 
   return (
     <section className="bg-[#F6F2E9] text-[#191E1B] py-20 sm:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden border-b border-[#EDE7DA]">
@@ -110,22 +133,18 @@ export function BeforeAfterSlider() {
                 {/* Slider Canvas */}
                 <div
                   ref={containerRef}
-                  onMouseDown={() => setIsDragging(true)}
-                  onMouseUp={() => setIsDragging(false)}
-                  onMouseLeave={() => setIsDragging(false)}
-                  onMouseMove={handleMouseMove}
-                  onTouchStart={() => setIsDragging(true)}
-                  onTouchEnd={() => setIsDragging(false)}
-                  onTouchMove={handleTouchMove}
-                  className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-2xl overflow-hidden select-none cursor-ew-resize bg-black mt-3"
+                  onMouseDown={(e) => handleStart(e.clientX)}
+                  onTouchStart={(e) => handleStart(e.touches[0].clientX)}
+                  className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-2xl overflow-hidden select-none cursor-ew-resize bg-black mt-3 touch-none"
                 >
                   {/* 1. AFTER Image (High-End Master Graded) */}
                   <div className="absolute inset-0">
                     <Image
-                      src="/images/portfolio/thumbnails/Healthcare.webp"
+                      src="/images/portfolio/thumbnails/healthcare.webp"
                       alt="After: Graded Cinematic Commercial"
                       fill
                       priority
+                      unoptimized
                       className="object-cover"
                     />
                     {/* After Badge */}
@@ -134,19 +153,22 @@ export function BeforeAfterSlider() {
                     </div>
                   </div>
 
-                  {/* 2. BEFORE Image (Clipped overlay layer - Flat LOG look) */}
+                  {/* 2. BEFORE Image (Clipped overlay layer - Raw Flat LOG Profile) */}
                   <div
-                    className="absolute inset-0 overflow-hidden"
-                    style={{ width: `${sliderPosition}%` }}
+                    className="absolute inset-0 pointer-events-none transition-none"
+                    style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
                   >
-                    <div className="relative w-full h-full min-w-[500px] sm:min-w-[800px]">
-                      <Image
-                        src="/images/portfolio/thumbnails/Healthcare.webp"
-                        alt="Before: Raw Flat Footage"
-                        fill
-                        className="object-cover filter grayscale contrast-75 brightness-110"
-                      />
-                    </div>
+                    <Image
+                      src="/images/portfolio/thumbnails/healthcare.webp"
+                      alt="Before: Raw Flat LOG Profile Footage"
+                      fill
+                      priority
+                      unoptimized
+                      className="object-cover"
+                      style={{
+                        filter: "saturate(0.28) contrast(0.68) brightness(1.18)",
+                      }}
+                    />
                     {/* Before Badge */}
                     <div className="absolute top-4 left-4 z-10 rounded-full bg-black/75 border border-white/20 backdrop-blur-md px-3.5 py-1 text-[11px] font-mono font-bold tracking-wider text-white shadow-md">
                       RAW &bull; FLAT LOG PROFILE
