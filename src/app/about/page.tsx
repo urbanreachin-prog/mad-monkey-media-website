@@ -1,17 +1,21 @@
 import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowUpRight, Compass, Clapperboard, Share2 } from "lucide-react";
-import { siteConfig } from "@/config/site";
-import { ProcessSystemGraphic } from "@/components/about/ProcessSystemGraphic";
-import { GlassCTA } from "@/components/glass/GlassCTA";
+import {
+  ArrowRight,
+  Compass,
+  Clapperboard,
+  Share2,
+  Sparkles,
+} from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
+import { StudioConversionCTA } from "@/components/studio/StudioConversionCTA";
+import { AboutHeroMetrics } from "@/components/about/AboutHeroMetrics";
 
 export const metadata: Metadata = {
-  title: "About — Our Philosophy & Creative Approach",
+  title: "About Us — Creative Production Studio & Manifesto",
   description:
-    "Mad Monkey Media is a creative production and digital marketing agency built around one simple idea: creative that captures attention and content that communicates value.",
+    "Mad Monkey Media is an independent creative video production studio built on craft, velocity, and high-retention visual storytelling.",
   alternates: {
     canonical: "/about",
   },
@@ -20,26 +24,29 @@ export const metadata: Metadata = {
 const approachStages = [
   {
     number: "01",
-    label: "STRATEGY",
-    title: "Understand the Brand, Audience & Message",
+    tag: "DISCIPLINE 01 // POSITIONING",
+    title: "Psychological Framing & Hook Architecture",
+    headline: "Understand Brand Context & Viewer Drop-off Triggers",
     description:
-      "Before cameras roll, we study your product, showroom environment, and audience psychology—defining clear positioning, content pillars, and platform hooks.",
+      "Before cameras roll or timelines are assembled, we dissect your product, market positioning, and audience psychology—defining irresistible 2-second hooks, clear content pillars, and platform distribution formats.",
     icon: Compass,
   },
   {
     number: "02",
-    label: "CREATION",
-    title: "Direction, Production & Precision Editing",
+    tag: "DISCIPLINE 02 // DIRECTION",
+    title: "Cinema-Grade Direction & Cadence Cutting",
+    headline: "High-Retention Visual Rhythms & Color Science",
     description:
-      "We translate strategy into scroll-stopping vertical reels, commercial films, and visual design systems crafted with disciplined lighting, framing, and pacing.",
+      "We translate strategic positioning into scroll-stopping vertical reels, commercial films, and brand narratives crafted with disciplined lighting, micro-zooms, kinetic typography, and custom Rec.709 color science.",
     icon: Clapperboard,
   },
   {
     number: "03",
-    label: "DISTRIBUTION",
-    title: "Consistent Publishing & Targeted Reach",
+    tag: "DISCIPLINE 03 // DEPLOYMENT",
+    title: "Disciplined Publishing & Creative Scaling",
+    headline: "Multi-Platform Asset Repurposing & Paid Variations",
     description:
-      "Great content needs structured deployment. We pair studio production with cohesive social calendars and performance marketing so your brand stays active and visible.",
+      "Great films deserve disciplined deployment. We bundle vertical reels with custom high-CTR cover thumbnails, viral captions, and A/B hook variations engineered for organic reach and high-ROAS paid acquisition.",
     icon: Share2,
   },
 ];
@@ -47,158 +54,150 @@ const approachStages = [
 const philosophyPoints = [
   {
     number: "01",
-    title: "Craft Over Templates",
+    title: "Craft Over Generic Templates",
     description:
-      "Every brand has its own texture, pace, and story. Whether filming fine jewellery, an automotive detailing bay, or a manufacturing plant floor, we build visual language around the subject rather than recycling generic agency templates.",
+      "Every brand possesses distinct textures, cadence, and stories. Whether filming fine jewellery macro details, automotive detailing bays, or corporate leadership stories, we build bespoke visual language rather than recycling generic agency presets.",
   },
   {
     number: "02",
-    title: "Clarity Before Camera",
+    title: "Attention Is Strictly Engineered",
     description:
-      "Strong production starts with understanding why the piece exists and who needs to see it. We align creative direction with the actual questions, hesitations, and aspirations of your audience.",
+      "Viewer retention is never accidental. The first 1.8 seconds must generate irresistible pattern interrupts, the audio track must provide physical weight, and the cut cadence must eliminate dead air.",
   },
   {
     number: "03",
-    title: "Platform-Native Execution",
+    title: "Velocity Without Compromise",
     description:
-      "Cinema-grade production only works online when edited for how people actually watch. We combine high-production visuals with disciplined hooks, pacing, and social systems built for modern digital channels.",
+      "Digital culture moves rapidly. Our agile 24-48h first-cut delivery sprint ensures your brand leads cultural conversations and product momentum rather than lagging weeks behind.",
   },
   {
     number: "04",
-    title: "Honest Partnership",
+    title: "Complete Radical Transparency",
     description:
-      "We do not make inflated promises or hide behind jargon. We focus on delivering consistent, unmistakable creative quality and clear communication at every stage of production.",
+      "Zero account coordinator telephone games, zero hidden hourly fees, and 100% tax-compliant GST invoicing. You collaborate directly with senior creative directors inside your private WhatsApp/Slack channel.",
   },
 ];
 
 export default function AboutPage() {
   return (
-    <div className="overflow-x-hidden bg-studio-charcoal text-studio-cream min-h-screen">
-      {/* 1. ABOUT HERO & PROCESS VISUAL */}
-      <section className="studio-dark-grid relative pt-10 pb-16 sm:pt-16 sm:pb-24 px-4 sm:px-6 lg:px-8 border-b border-studio-cream/10">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-            {/* Left Column: Studio Introduction */}
+    <div className="overflow-x-hidden bg-[#F6F2E9] text-[#191E1B] min-h-screen">
+      {/* 1. EDITORIAL ABOUT HERO MASTHEAD */}
+      <section className="relative pt-12 pb-16 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-32 px-4 sm:px-6 lg:px-8 border-b border-[#EDE7DA] overflow-hidden">
+        <div className="relative max-w-7xl mx-auto">
+          {/* Top Telemetry Strip */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 sm:mb-12 border-b border-[#EDE7DA] text-[11px] font-mono text-[#68716B]">
+            <div className="flex items-center gap-3">
+              <span className="flex items-center gap-1.5 text-[#B88D44] font-bold">
+                <span className="w-2 h-2 rounded-full bg-[#10B981]" />
+                <span>STUDIO MANIFESTO // ABOUT US</span>
+              </span>
+              <span className="text-[#EDE7DA]">&bull;</span>
+              <span>INDEPENDENT PRODUCTION STUDIO</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <span>EST. NEW DELHI</span>
+              <span className="text-[#EDE7DA]">&bull;</span>
+              <span className="text-[#B88D44] font-bold">GST REGISTERED ENTITY</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            {/* Left Column (7 cols): Editorial Narrative */}
             <div className="lg:col-span-7">
               <Reveal>
-                <div className="inline-flex items-center gap-2.5 rounded-full border border-studio-cream/15 bg-studio-charcoalDeep/80 px-3.5 py-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-studio-cream">
-                  <span
-                    className="h-2 w-2 rounded-full bg-studio-lime shadow-[0_0_10px_#D8FF3E]"
-                    aria-hidden="true"
-                  />
-                  <span>ABOUT MAD MONKEY MEDIA</span>
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#EDE7DA] bg-white px-4 py-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-[#68716B] shadow-xs mb-6">
+                  <Sparkles className="w-3.5 h-3.5 text-[#B88D44]" />
+                  <span>CRAFT &bull; RETENTION &bull; VELOCITY</span>
                 </div>
 
-                <h1 className="mt-6 font-heading text-4xl sm:text-6xl lg:text-[4.15rem] font-bold tracking-tightest text-studio-cream leading-[1.03]">
-                  We&apos;re a creative team built around{" "}
-                  <span className="text-studio-lime">one simple idea.</span>
+                <h1 className="font-heading text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-[#191E1B] leading-[1.05]">
+                  We believe craft{" "}
+                  <span className="font-serif italic font-normal text-[#B88D44] block sm:inline">
+                    beats noise.
+                  </span>
                 </h1>
 
-                <p className="mt-6 max-w-2xl text-lg sm:text-xl font-medium text-studio-cream/95 leading-relaxed">
-                  {siteConfig.brandPromise}
+                <p className="mt-6 text-lg sm:text-xl text-[#68716B] leading-relaxed max-w-xl font-sans">
+                  Mad Monkey Media is an independent creative video production studio. We exist to help ambitious brands move past repetitive agency templates and engineer cinematic visual content that commands attention, builds authority, and accelerates enterprise growth.
                 </p>
+              </Reveal>
 
-                <p className="mt-4 max-w-2xl text-base sm:text-lg text-studio-muted leading-relaxed">
-                  Most businesses don&apos;t struggle with the quality of what
-                  they sell—they struggle with how their brand is perceived
-                  online. We bridge the gap between the real-world quality of
-                  your business and how people experience it on screen.
-                </p>
-
-                <div className="mt-8 flex flex-wrap items-center gap-3.5">
-                  <Link
-                    href="/work"
-                    className="group inline-flex items-center gap-2 rounded-full bg-studio-lime px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-[0.1em] text-studio-ink transition-all duration-200 hover:bg-studio-cream"
-                  >
-                    <span>Explore Selected Work</span>
-                    <ArrowUpRight
-                      className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      aria-hidden="true"
-                    />
-                  </Link>
-
-                  <Link
-                    href="/services"
-                    className="inline-flex items-center gap-2 rounded-full border border-studio-cream/20 bg-studio-charcoalDeep px-6 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-[0.1em] text-studio-cream transition-colors hover:border-studio-lime hover:text-studio-lime"
-                  >
-                    <span>Our Services</span>
-                  </Link>
-                </div>
+              {/* Four Studio Hero Statistics with Motion Graphics */}
+              <Reveal delay={0.1}>
+                <AboutHeroMetrics />
               </Reveal>
             </div>
 
-            {/* Right Column: Custom Animated Studio Process Graphic */}
+            {/* Right Column (5 cols): Studio Manifesto Card */}
             <div className="lg:col-span-5">
-              <Reveal delay={0.1}>
-                <ProcessSystemGraphic />
+              <Reveal delay={0.15}>
+                <div className="rounded-3xl border-2 border-[#191E1B] bg-[#111513] text-[#EDE7DA] p-8 sm:p-10 shadow-2xl relative overflow-hidden">
+                  <div className="flex items-center justify-between pb-4 border-b border-white/10 font-mono text-xs text-[#D4AF67]">
+                    <span>STUDIO PRINCIPLE</span>
+                    <span>MAD MONKEY MEDIA</span>
+                  </div>
+
+                  <p className="mt-6 font-serif italic text-xl sm:text-2xl text-white leading-relaxed">
+                    &ldquo;In a world saturated with AI fluff and cookie-cutter social media posts, authentic cinematography and obsessive rhythm cutting are the ultimate unfair advantage.&rdquo;
+                  </p>
+
+                  <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between font-mono text-xs text-[#8A948E]">
+                    <span>NEW DELHI &bull; WORLDWIDE</span>
+                    <span className="text-[#D4AF67] font-bold">DIRECTOR STATEMENT</span>
+                  </div>
+                </div>
               </Reveal>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. OUR APPROACH: STRATEGY -> CREATION -> DISTRIBUTION */}
-      <section
-        aria-labelledby="approach-stages-heading"
-        className="studio-ink-grid bg-studio-charcoalDeep py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-studio-cream/10"
-      >
-        <div className="mx-auto max-w-7xl">
-          <Reveal>
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-12 border-b border-studio-cream/12">
-              <div>
-                <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-studio-lime">
-                  <span
-                    className="h-2 w-2 rotate-45 bg-studio-lime"
-                    aria-hidden="true"
-                  />
-                  <span>OUR APPROACH</span>
-                </span>
-                <h2
-                  id="approach-stages-heading"
-                  className="mt-3 font-heading text-3xl sm:text-5xl font-bold tracking-tightest text-studio-cream leading-[1.06]"
-                >
-                  Strategy &rarr; Creation &rarr; Distribution.
-                </h2>
+      {/* 2. THE THREE DISCIPLINES OF OUR METHOD */}
+      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#EDE7DA] bg-[#FAF7F2]">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl mb-14">
+            <Reveal>
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#EDE7DA] bg-white px-4 py-1 text-xs font-mono font-semibold uppercase tracking-wider text-[#68716B] shadow-xs">
+                <span className="text-[#B88D44] font-bold">THE STUDIO METHOD</span>
               </div>
-              <p className="max-w-md text-sm sm:text-base text-studio-muted leading-relaxed">
-                A unified production and digital system so your content looks
-                intentional and reaches the right audience.
-              </p>
-            </div>
-          </Reveal>
+              <h2 className="mt-4 font-heading text-3xl sm:text-5xl font-bold tracking-tight text-[#191E1B]">
+                How we architect high-retention video.
+              </h2>
+            </Reveal>
+          </div>
 
-          <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {approachStages.map((stage, idx) => {
-              const IconComponent = stage.icon;
+              const Icon = stage.icon;
               return (
                 <Reveal key={stage.number} delay={idx * 0.08}>
-                  <div className="group h-full rounded-2xl border border-studio-cream/12 bg-studio-charcoal p-7 sm:p-8 flex flex-col justify-between transition-all duration-200 hover:border-studio-lime/50">
+                  <div className="rounded-3xl border border-[#EDE7DA] bg-white p-8 sm:p-9 flex flex-col justify-between h-full shadow-xs hover:border-[#B88D44]/50 hover:shadow-lg transition-all duration-300">
                     <div>
-                      <div className="flex items-center justify-between gap-3">
-                        <span className="inline-flex items-center gap-2 rounded-full border border-studio-lime/35 bg-studio-lime/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-studio-lime">
-                          <span>{stage.number}</span>
-                          <span>&middot;</span>
-                          <span>{stage.label}</span>
+                      <div className="flex items-center justify-between pb-4 border-b border-[#EDE7DA] font-mono text-xs">
+                        <span className="text-[#B88D44] font-bold tracking-wider">
+                          {stage.tag}
                         </span>
-
-                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-studio-cream/15 bg-studio-charcoalDeep text-studio-cream group-hover:border-studio-lime group-hover:bg-studio-lime group-hover:text-studio-ink transition-colors">
-                          <IconComponent
-                            className="h-4 w-4"
-                            aria-hidden="true"
-                          />
+                        <span className="w-9 h-9 rounded-xl bg-[#FAF7F2] border border-[#EDE7DA] text-[#B88D44] flex items-center justify-center">
+                          <Icon className="w-5 h-5" />
                         </span>
                       </div>
 
-                      <h3 className="mt-6 font-heading text-xl sm:text-2xl font-bold tracking-tight text-studio-cream group-hover:text-studio-lime transition-colors">
+                      <h3 className="mt-6 font-heading text-2xl font-bold text-[#191E1B]">
                         {stage.title}
                       </h3>
 
-                      <p className="mt-3 text-sm sm:text-base text-studio-muted leading-relaxed">
+                      <p className="mt-2 text-xs font-mono font-semibold text-[#B88D44] uppercase tracking-wider">
+                        {stage.headline}
+                      </p>
+
+                      <p className="mt-4 text-sm text-[#68716B] leading-relaxed">
                         {stage.description}
                       </p>
                     </div>
 
-                    <div className="mt-8 h-0.5 w-12 bg-studio-cream/20 transition-all duration-300 group-hover:w-full group-hover:bg-studio-lime" />
+                    <div className="mt-8 pt-4 border-t border-[#EDE7DA] font-mono text-[10px] text-[#8A948E] uppercase tracking-widest">
+                      DISCIPLINE 0{idx + 1} &bull; STUDIO PIPELINE
+                    </div>
                   </div>
                 </Reveal>
               );
@@ -207,145 +206,59 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 3. HOW WE WORK WITH BRANDS (4 STUDIO PRINCIPLES) */}
-      <section
-        aria-labelledby="philosophy-heading"
-        className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-studio-cream/10"
-      >
-        <div className="mx-auto max-w-7xl">
-          <Reveal>
-            <div className="max-w-3xl">
-              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-studio-lime">
-                <span
-                  className="h-2 w-2 rounded-full bg-studio-lime"
-                  aria-hidden="true"
-                />
-                <span>HOW WE WORK WITH BRANDS</span>
-              </span>
-              <h2
-                id="philosophy-heading"
-                className="mt-3 font-heading text-3xl sm:text-5xl font-bold tracking-tightest text-studio-cream leading-[1.08]"
-              >
-                Where Strategy, Production, and Digital Presence Meet.
-              </h2>
-            </div>
-          </Reveal>
-
-          <div className="mt-12 sm:mt-14 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {philosophyPoints.map((point, index) => (
-              <Reveal key={point.number} delay={(index % 2) * 0.08}>
-                <div className="group h-full rounded-2xl border border-studio-cream/12 bg-studio-charcoalDeep p-7 sm:p-9 transition-colors duration-200 hover:border-studio-lime/45">
-                  <span className="font-heading text-xs font-bold uppercase tracking-[0.2em] text-studio-lime">
-                    {point.number}
-                  </span>
-                  <h3 className="mt-3 font-heading text-2xl font-bold tracking-tight text-studio-cream group-hover:text-studio-lime transition-colors">
-                    {point.title}
-                  </h3>
-                  <p className="mt-3 text-sm sm:text-base text-studio-muted leading-relaxed">
-                    {point.description}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. CONTENT QUALITY & BRAND COMMUNICATION + TARGET INDUSTRIES */}
-      <section
-        aria-labelledby="industries-heading"
-        className="studio-ink-grid bg-studio-charcoalDeep py-20 sm:py-24 px-4 sm:px-6 lg:px-8"
-      >
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Column: Content Quality & Brand Communication */}
-            <div className="lg:col-span-5">
+      {/* 3. ASYMMETRIC PHILOSOPHY SPREAD */}
+      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-[#EDE7DA] bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            <div className="lg:col-span-5 lg:sticky lg:top-28">
               <Reveal>
-                <div className="rounded-3xl border border-studio-cream/15 bg-studio-charcoal p-7 sm:p-8">
-                  <div className="flex items-center gap-3.5 border-b border-studio-cream/10 pb-5">
-                    <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-studio-cream border border-studio-cream/25 p-1">
-                      <Image
-                        src="/images/branding/logo.png"
-                        alt="Mad Monkey Media brand mark"
-                        fill
-                        sizes="48px"
-                        className="object-contain"
-                      />
-                    </div>
-                    <div>
-                      <p className="font-heading text-sm font-bold uppercase tracking-[0.16em] text-studio-cream">
-                        {siteConfig.businessName}
-                      </p>
-                      <p className="text-xs text-studio-lime font-mono">
-                        STUDIO STANDARD
-                      </p>
-                    </div>
-                  </div>
-
-                  <h3 className="mt-6 font-heading text-2xl font-bold text-studio-cream leading-snug">
-                    Why Visual Quality Shapes Brand Trust
-                  </h3>
-
-                  <p className="mt-3 text-sm sm:text-base text-studio-muted leading-relaxed">
-                    In high-trust categories, customers judge your business by
-                    how clearly and confidently you present your craft. From
-                    showrooms and detailing bays to architectural developments
-                    and industrial floors, our focus stays on lighting,
-                    composition, and consistent brand communication.
-                  </p>
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#EDE7DA] bg-[#FAF7F2] px-4 py-1 text-xs font-mono font-semibold uppercase tracking-wider text-[#68716B] shadow-xs">
+                  <span className="text-[#B88D44] font-bold">ETHOS &amp; STANDARDS</span>
                 </div>
-              </Reveal>
-            </div>
-
-            {/* Right Column: Industries We Partner With */}
-            <div className="lg:col-span-7">
-              <Reveal delay={0.08}>
-                <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-studio-lime">
-                  <span
-                    className="h-2 w-2 rotate-45 bg-studio-lime"
-                    aria-hidden="true"
-                  />
-                  <span>SECTOR FOCUS</span>
-                </span>
-                <h2
-                  id="industries-heading"
-                  className="mt-3 font-heading text-2xl sm:text-4xl font-bold tracking-tight text-studio-cream"
-                >
-                  Industries We Partner With
+                <h2 className="mt-4 font-heading text-3xl sm:text-5xl font-bold tracking-tight text-[#191E1B] leading-tight">
+                  Our creative standard.
                 </h2>
-                <p className="mt-3 max-w-2xl text-sm sm:text-base text-studio-muted">
-                  We collaborate with businesses and founders where visual
-                  quality and clear positioning directly shape customer
-                  perception.
+                <p className="mt-4 text-base text-[#68716B] leading-relaxed font-sans">
+                  We don&apos;t chase vanity metrics or rely on automated assembly lines. Every cut, hook, and sound effect is placed with intention to elevate your brand&apos;s perceived authority.
                 </p>
 
-                <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                  {siteConfig.targetIndustries.map((industry) => (
-                    <div
-                      key={industry}
-                      className="flex items-center gap-3 rounded-2xl border border-studio-cream/12 bg-studio-charcoal px-5 py-4 text-sm sm:text-base font-medium text-studio-cream transition-colors hover:border-studio-lime/45"
-                    >
-                      <span
-                        className="h-2 w-2 shrink-0 rotate-45 bg-studio-lime"
-                        aria-hidden="true"
-                      />
-                      <span>{industry}</span>
-                    </div>
-                  ))}
+                <div className="mt-8">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#B88D44] text-white px-7 py-3.5 text-xs font-heading font-bold uppercase tracking-wider hover:bg-[#A37B35] transition-all shadow-md"
+                  >
+                    <span>Initiate Project With Studio</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
               </Reveal>
+            </div>
+
+            <div className="lg:col-span-7 space-y-6">
+              {philosophyPoints.map((point, idx) => (
+                <Reveal key={point.number} delay={idx * 0.06}>
+                  <div className="rounded-3xl border border-[#EDE7DA] bg-[#FAF7F2] p-7 sm:p-8 hover:border-[#B88D44]/50 transition-all shadow-xs">
+                    <div className="flex items-baseline gap-3">
+                      <span className="font-mono text-xs font-bold text-[#B88D44]">
+                        {point.number}
+                      </span>
+                      <h3 className="font-heading text-xl font-bold text-[#191E1B]">
+                        {point.title}
+                      </h3>
+                    </div>
+                    <p className="mt-3 text-sm text-[#68716B] leading-relaxed">
+                      {point.description}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* 5. CLOSING CTA */}
-      <GlassCTA
-        headline="Have a brand worth talking about?"
-        supportingText="Let's create something worth remembering."
-        primaryLabel="Start a Conversation"
-        primaryHref="/contact"
-      />
+      {/* 4. CLOSING CTA */}
+      <StudioConversionCTA />
     </div>
   );
 }

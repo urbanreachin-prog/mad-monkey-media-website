@@ -14,7 +14,7 @@ export interface FAQItem {
 export const STUDIO_FAQS: FAQItem[] = [
   {
     id: "faq-services-scope",
-    category: "Capabilities",
+    category: "Our Services",
     question: "What services does Mad Monkey Media handle in-house?",
     answer:
       "We operate as an end-to-end creative production and digital marketing studio. Our core services cover Creative Production, Commercial Video Production, Reels & Short-Form Vertical Content, Social Media Management, Performance Marketing (Meta & Google Ads), Brand Strategy, Founder & Executive Personal Branding, and Custom Website Development.",

@@ -12,7 +12,7 @@ export interface ServiceItem {
 
 /**
  * Centralized Services Data — Mad Monkey Media
- * Covers all 8 required core capabilities without inflated or unsupported promises.
+ * Covers all 8 required core services without inflated or unsupported promises.
  */
 export const services: ServiceItem[] = [
   {

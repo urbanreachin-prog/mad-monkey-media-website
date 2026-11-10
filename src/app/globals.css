@@ -3,175 +3,108 @@
 @tailwind utilities;
 
 :root {
-  --bg-primary: #171815;
-  --bg-secondary: #20211f;
-  --bg-elevated: #282a27;
-  --text-primary: #f3f0e8;
-  --text-secondary: #aaafa5;
-  --accent-lime: #d8ff3e;
-  --accent-orange: #ff6b35;
-  --border-subtle: rgba(243, 240, 232, 0.12);
-  --border-lime-muted: rgba(216, 255, 62, 0.28);
-  --glass-surface: rgba(29, 32, 27, 0.76);
-  --glass-surface-strong: rgba(23, 24, 21, 0.88);
-  --glass-border: rgba(243, 240, 232, 0.14);
+  --bg-primary: #F6F2E9;
+  --bg-secondary: #FAF7F2;
+  --bg-elevated: #FFFFFF;
+  --bg-dark: #111513;
+  --text-primary: #191E1B;
+  --text-secondary: #68716B;
+  --text-muted: #8A948E;
+  --accent-gold: #B88D44;
+  --accent-gold-light: #D4AF67;
+  --accent-gold-hover: #A37B35;
+  --border-subtle: #EDE7DA;
+  --border-glass: rgba(25, 30, 27, 0.08);
 }
 
 @layer base {
   html {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    color-scheme: dark;
+    background-color: #F6F2E9;
+    color: #191E1B;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
+    background-color: #F6F2E9;
+    color: #191E1B;
     overflow-x: hidden;
-    selection-background-color: #d8ff3e;
-    selection-color: #171815;
+    selection-background-color: #B88D44;
+    selection-color: #FFFFFF;
   }
 
   ::selection {
-    background-color: rgba(216, 255, 62, 0.32);
-    color: #f3f0e8;
+    background-color: rgba(184, 141, 68, 0.28);
+    color: #191E1B;
   }
 
   :focus-visible {
-    outline: 2px solid #d8ff3e;
+    outline: 2px solid #B88D44;
     outline-offset: 3px;
   }
 }
 
 @layer components {
-  /* Dark Studio Translucent Surface */
-  .glass-surface {
-    background-color: rgba(29, 32, 27, 0.78);
-    backdrop-filter: blur(16px) saturate(140%);
-    -webkit-backdrop-filter: blur(16px) saturate(140%);
-    border: 1px solid rgba(243, 240, 232, 0.14);
-    box-shadow:
-      0 14px 36px -10px rgba(0, 0, 0, 0.5),
-      inset 0 1px 0 0 rgba(243, 240, 232, 0.08);
+  /* Warm Ivory Card & Translucent Surface */
+  .cream-surface {
+    background-color: #FFFFFF;
+    border: 1px solid #EDE7DA;
+    box-shadow: 0 4px 20px -2px rgba(25, 30, 27, 0.04), 0 2px 6px -1px rgba(25, 30, 27, 0.02);
   }
 
-  /* Stronger Dark Studio Glass Surface for Navigation, Cards & CTAs */
-  .glass-surface-strong {
-    background-color: rgba(23, 24, 21, 0.88);
-    backdrop-filter: blur(20px) saturate(150%);
-    -webkit-backdrop-filter: blur(20px) saturate(150%);
-    border: 1px solid rgba(243, 240, 232, 0.15);
-    box-shadow:
-      0 22px 54px -14px rgba(0, 0, 0, 0.65),
-      inset 0 1px 0 0 rgba(243, 240, 232, 0.1);
+  .cream-surface-elevated {
+    background-color: #FFFFFF;
+    border: 1px solid #EDE7DA;
+    box-shadow: 0 16px 40px -8px rgba(25, 30, 27, 0.08), 0 4px 12px -2px rgba(25, 30, 27, 0.04);
   }
 
-  /* Dark-on-media glass pill for video controls & project frame labels */
-  .glass-media-pill {
-    background-color: rgba(23, 24, 21, 0.86);
-    backdrop-filter: blur(14px) saturate(150%);
-    -webkit-backdrop-filter: blur(14px) saturate(150%);
-    border: 1px solid rgba(243, 240, 232, 0.18);
-    box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.6);
+  /* Reference Warm Micro-Dot Pattern */
+  .pattern-warm-dots {
+    background-color: #F6F2E9;
+    background-image: radial-gradient(circle, rgba(25, 30, 27, 0.065) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 
-  /* Studio Ambient Atmosphere Layers (Dark Unified) */
-  .studio-ambient-hero {
-    background-color: #20211f;
+  .pattern-warm-grid {
+    background-color: #F6F2E9;
     background-image:
-      radial-gradient(
-        50% 52% at 74% 32%,
-        rgba(216, 255, 62, 0.085) 0%,
-        rgba(216, 255, 62, 0.02) 48%,
-        transparent 100%
-      ),
-      linear-gradient(
-        to right,
-        rgba(243, 240, 232, 0.04) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        to bottom,
-        rgba(243, 240, 232, 0.04) 1px,
-        transparent 1px
-      );
-    background-size: 100% 100%, 48px 48px, 48px 48px;
+      linear-gradient(to right, rgba(25, 30, 27, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(25, 30, 27, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
-  .studio-ambient-subtle {
-    background-color: #171815;
+  /* Dark Obsidian Pattern for Contrast Sections */
+  .pattern-dark-obsidian {
+    background-color: #111513;
     background-image:
-      radial-gradient(
-        50% 60% at 50% 0%,
-        rgba(216, 255, 62, 0.06) 0%,
-        transparent 75%
-      ),
-      linear-gradient(
-        to right,
-        rgba(243, 240, 232, 0.035) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        to bottom,
-        rgba(243, 240, 232, 0.035) 1px,
-        transparent 1px
-      );
-    background-size: 100% 100%, 48px 48px, 48px 48px;
+      radial-gradient(circle at 50% 0%, rgba(184, 141, 68, 0.08) 0%, transparent 60%),
+      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
   }
 
-  /* Deep Charcoal Studio Grid & Restrained Lime Glow */
-  .studio-dark-grid {
-    background-color: #20211f;
-    background-image:
-      radial-gradient(
-        48% 50% at 74% 38%,
-        rgba(216, 255, 62, 0.09) 0%,
-        rgba(216, 255, 62, 0.02) 48%,
-        transparent 100%
-      ),
-      linear-gradient(
-        to right,
-        rgba(243, 240, 232, 0.04) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        to bottom,
-        rgba(243, 240, 232, 0.04) 1px,
-        transparent 1px
-      );
-    background-size: 100% 100%, 48px 48px, 48px 48px;
+  /* Glass pill badge */
+  .glass-pill {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(25, 30, 27, 0.08);
   }
 
-  /* Secondary Deep Ink Technical Grid */
-  .studio-ink-grid {
-    background-color: #171815;
-    background-image:
-      linear-gradient(
-        to right,
-        rgba(243, 240, 232, 0.038) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        to bottom,
-        rgba(243, 240, 232, 0.038) 1px,
-        transparent 1px
-      );
-    background-size: 52px 52px;
+  .glass-pill-dark {
+    background-color: rgba(17, 21, 19, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
   }
 
   .animate-editorial-marquee {
-    animation: editorial-marquee 34s linear infinite;
+    animation: editorial-marquee 36s linear infinite;
   }
 
   .animate-editorial-marquee:hover {
     animation-play-state: paused;
-  }
-
-  .animate-orbit-slow {
-    animation: orbit-slow 28s linear infinite;
   }
 }
 
@@ -181,48 +114,6 @@
   }
   100% {
     transform: translate3d(-50%, 0, 0);
-  }
-}
-
-@keyframes orbit-slow {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* Fallback when backdrop-filter is unsupported */
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .glass-surface {
-    background-color: #1d201b;
-    border-color: rgba(243, 240, 232, 0.14);
-  }
-
-  .glass-surface-strong {
-    background-color: #171815;
-    border-color: rgba(243, 240, 232, 0.16);
-  }
-
-  .glass-media-pill {
-    background-color: #171815;
-    border-color: rgba(243, 240, 232, 0.2);
-  }
-}
-
-/* Mobile performance optimization: lighter blur on small screens */
-@media (max-width: 640px) {
-  .glass-surface {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    background-color: rgba(29, 32, 27, 0.9);
-  }
-
-  .glass-surface-strong {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    background-color: rgba(23, 24, 21, 0.94);
   }
 }
 

@@ -84,11 +84,16 @@ export function GlassNavbar() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-heading text-xs sm:text-sm font-bold tracking-tight text-studio-cream leading-none">
-                  MAD MONKEY
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="font-heading text-xs sm:text-sm font-bold tracking-tight text-studio-cream leading-none">
+                    MAD MONKEY
+                  </span>
+                  <span className="rounded-full border border-studio-lime/60 bg-studio-lime/15 px-2 py-0.5 text-[8px] font-mono font-bold uppercase tracking-[0.16em] text-studio-lime">
+                    PREVIEW
+                  </span>
+                </div>
                 <span className="mt-1 text-[9px] font-semibold uppercase tracking-[0.22em] text-studio-muted leading-none">
-                  MEDIA STUDIO
+                  MEDIA STUDIO &middot; REDESIGN CONCEPT
                 </span>
               </div>
             </Link>

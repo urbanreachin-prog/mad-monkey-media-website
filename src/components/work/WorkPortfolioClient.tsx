@@ -34,8 +34,8 @@ export function WorkPortfolioClient() {
 
   return (
     <div>
-      {/* Compact Category Filter Bar + Clean Grid/List Toggle */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-6 sm:pb-7 border-b border-studio-cream/10">
+      {/* Category Filter Bar + Grid/List Toggle */}
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-6 sm:pb-7 border-b border-[#EDE7DA]">
         <div
           role="tablist"
           aria-label="Filter portfolio videos by category"
@@ -52,22 +52,22 @@ export function WorkPortfolioClient() {
                 role="tab"
                 aria-selected={isSelected}
                 onClick={() => handleCategoryChange(category)}
-                className={`inline-flex items-center gap-2 rounded-full px-3.5 sm:px-4 py-2 text-xs sm:text-[13px] font-semibold tracking-[0.04em] transition-all duration-200 ${
+                className={`inline-flex items-center gap-2 rounded-full px-3.5 sm:px-4 py-2 text-xs sm:text-[13px] font-semibold tracking-wide transition-all duration-200 ${
                   isSelected
-                    ? "bg-studio-lime text-studio-ink shadow-[0_0_20px_rgba(216,255,62,0.22)]"
-                    : "border border-studio-cream/12 bg-studio-charcoalDeep/90 text-studio-muted hover:border-studio-cream/30 hover:text-studio-cream"
+                    ? "bg-[#B88D44] text-white shadow-sm"
+                    : "border border-[#EDE7DA] bg-white text-[#68716B] hover:border-[#B88D44]/40 hover:text-[#191E1B]"
                 }`}
               >
                 {isSelected && (
                   <span
-                    className="h-1.5 w-1.5 rounded-full bg-studio-ink"
+                    className="h-1.5 w-1.5 rounded-full bg-white"
                     aria-hidden="true"
                   />
                 )}
                 <span>{category}</span>
                 <span
                   className={`text-[11px] font-mono ${
-                    isSelected ? "text-studio-ink/75" : "text-studio-muted/75"
+                    isSelected ? "text-white/80" : "text-[#8A948E]"
                   }`}
                 >
                   {count}
@@ -78,9 +78,9 @@ export function WorkPortfolioClient() {
         </div>
 
         <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0">
-          <div className="text-xs font-mono uppercase tracking-[0.14em] text-studio-muted">
+          <div className="text-xs font-mono uppercase tracking-wider text-[#68716B]">
             Showing{" "}
-            <span className="text-studio-lime font-bold">
+            <span className="text-[#B88D44] font-bold">
               {filteredItems.length}
             </span>{" "}
             {filteredItems.length === 1 ? "Reel" : "Reels"}
@@ -89,17 +89,17 @@ export function WorkPortfolioClient() {
           <div
             role="group"
             aria-label="Portfolio layout view"
-            className="inline-flex items-center rounded-full border border-studio-cream/12 bg-studio-charcoalDeep p-1"
+            className="inline-flex items-center rounded-full border border-[#EDE7DA] bg-white p-1 shadow-xs"
           >
             <button
               type="button"
               onClick={() => setLayoutMode("grid")}
               aria-pressed={layoutMode === "grid"}
               aria-label="Grid view"
-              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] transition-colors ${
+              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wider transition-colors ${
                 layoutMode === "grid"
-                  ? "bg-studio-lime text-studio-ink"
-                  : "text-studio-muted hover:text-studio-cream"
+                  ? "bg-[#B88D44] text-white"
+                  : "text-[#68716B] hover:text-[#191E1B]"
               }`}
             >
               <LayoutGrid className="h-3.5 w-3.5" aria-hidden="true" />
@@ -110,10 +110,10 @@ export function WorkPortfolioClient() {
               onClick={() => setLayoutMode("list")}
               aria-pressed={layoutMode === "list"}
               aria-label="List view"
-              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] transition-colors ${
+              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wider transition-colors ${
                 layoutMode === "list"
-                  ? "bg-studio-lime text-studio-ink"
-                  : "text-studio-muted hover:text-studio-cream"
+                  ? "bg-[#B88D44] text-white"
+                  : "text-[#68716B] hover:text-[#191E1B]"
               }`}
             >
               <List className="h-3.5 w-3.5" aria-hidden="true" />
@@ -123,7 +123,7 @@ export function WorkPortfolioClient() {
         </div>
       </div>
 
-      {/* Portrait 9:16 Responsive Video Gallery */}
+      {/* Portrait 9:16 Video Gallery */}
       {filteredItems.length > 0 ? (
         <div
           className={
@@ -145,17 +145,17 @@ export function WorkPortfolioClient() {
           ))}
         </div>
       ) : (
-        <div className="mt-10 rounded-2xl border border-studio-cream/12 bg-studio-charcoalDeep p-10 text-center">
-          <p className="font-heading text-lg font-bold text-studio-cream">
+        <div className="mt-10 rounded-2xl border border-[#EDE7DA] bg-white p-10 text-center shadow-xs">
+          <p className="font-heading text-lg font-bold text-[#191E1B]">
             No videos found in {activeCategory}.
           </p>
-          <p className="mt-1.5 text-xs sm:text-sm text-studio-muted max-w-md mx-auto">
+          <p className="mt-1.5 text-xs sm:text-sm text-[#68716B] max-w-md mx-auto">
             Select &ldquo;All&rdquo; to browse the complete portfolio archive.
           </p>
           <button
             type="button"
             onClick={() => handleCategoryChange("All")}
-            className="mt-5 inline-flex items-center justify-center rounded-full bg-studio-lime px-5 py-2.5 text-xs font-bold uppercase tracking-[0.1em] text-studio-ink hover:bg-studio-cream transition-colors"
+            className="mt-5 inline-flex items-center justify-center rounded-full bg-[#B88D44] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white hover:bg-[#A37B35] transition-colors"
           >
             Show All Work
           </button>
@@ -164,4 +164,3 @@ export function WorkPortfolioClient() {
     </div>
   );
 }
-

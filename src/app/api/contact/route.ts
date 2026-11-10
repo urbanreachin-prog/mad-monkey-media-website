@@ -156,25 +156,20 @@ export async function POST(request: Request) {
       isRealEnvValue(supabaseUrlRaw) && isRealEnvValue(supabaseKeyRaw);
     const resendConfigured = isRealEnvValue(resendApiKeyRaw);
 
+    // Isolated preview mode: simulate successful validation and receipt without requiring production secrets
     if (!supabaseConfigured && !resendConfigured) {
-      return NextResponse.json(
-        {
-          ok: false,
-          code: "BACKEND_NOT_CONFIGURED",
-          configured: {
-            supabase: false,
-            resend: false,
-          },
-          missingEnvVars: [
-            "SUPABASE_URL",
-            "SUPABASE_SERVICE_ROLE_KEY",
-            "RESEND_API_KEY",
-          ],
-          message:
-            "Supabase database (SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY) and Resend email (RESEND_API_KEY) are not configured in .env.local yet. Use the WhatsApp or email fallback buttons below to send your enquiry immediately.",
+      return NextResponse.json({
+        ok: true,
+        previewMode: true,
+        message:
+          "PREVIEW MODE: Enquiry validated successfully! In this isolated preview, no external database or email API is called, preserving production privacy.",
+        receivedPayload: {
+          name,
+          company,
+          service,
+          email,
         },
-        { status: 503 }
-      );
+      });
     }
 
     // 4. Duplicate submission protection (60s window for identical payloads)

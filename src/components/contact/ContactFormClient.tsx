@@ -59,7 +59,6 @@ export function ContactFormClient() {
   const [serverWarning, setServerWarning] = useState<string>("");
   const [lastFormattedMessage, setLastFormattedMessage] = useState<string>("");
 
-  // Synchronous ref locks to prevent duplicate submissions from rapid clicks
   const isSubmittingRef = useRef(false);
   const lastSubmittedFingerprintRef = useRef<string>("");
 
@@ -149,7 +148,6 @@ export function ContactFormClient() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Prevent rapid double-click duplicate submissions synchronously
     if (isSubmittingRef.current) {
       return;
     }
@@ -238,22 +236,21 @@ export function ContactFormClient() {
   };
 
   const inputBaseClass =
-    "w-full rounded-xl border bg-studio-charcoal px-4 py-3.5 text-sm text-studio-cream placeholder:text-studio-muted/60 transition-colors focus:border-studio-lime focus:outline-none";
+    "w-full rounded-2xl border bg-[#FAF7F2] px-4 py-3.5 text-sm text-[#191E1B] placeholder:text-[#8A948E] transition-colors focus:border-[#B88D44] focus:outline-none";
 
   return (
-    <div className="rounded-3xl border border-studio-cream/15 bg-studio-charcoalDeep p-6 sm:p-10 lg:p-12 shadow-editorial">
+    <div className="rounded-3xl border border-[#EDE7DA] bg-white p-6 sm:p-10 lg:p-12 shadow-xs">
       <div className="mb-8">
-        <h2 className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-studio-cream">
+        <h2 className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-[#191E1B]">
           Project Enquiry Form
         </h2>
-        <p className="mt-2 text-sm sm:text-base text-studio-muted">
-          Fill in your project details below, or message us directly on WhatsApp
-          for an immediate conversation.
+        <p className="mt-2 text-sm sm:text-base text-[#68716B]">
+          Fill in your project details below, or message us directly on WhatsApp for an immediate response.
         </p>
       </div>
 
       <form onSubmit={handleSubmit} noValidate className="space-y-6">
-        {/* Honeypot field for spam protection (hidden from human users) */}
+        {/* Honeypot field */}
         <div className="hidden" aria-hidden="true">
           <label htmlFor="contact-company-website">Website</label>
           <input
@@ -272,9 +269,9 @@ export function ContactFormClient() {
           <div>
             <label
               htmlFor="contact-name"
-              className="block text-xs font-bold uppercase tracking-[0.14em] text-studio-cream mb-2"
+              className="block text-xs font-bold uppercase tracking-wider text-[#191E1B] mb-2"
             >
-              Your Name <span className="text-studio-lime">*</span>
+              Your Name <span className="text-[#B88D44]">*</span>
             </label>
             <input
               id="contact-name"
@@ -288,14 +285,14 @@ export function ContactFormClient() {
               aria-describedby={errors.name ? "contact-name-error" : undefined}
               placeholder="e.g. Aarav Sharma"
               className={`${inputBaseClass} ${
-                errors.name ? "border-studio-orange" : "border-studio-cream/15"
+                errors.name ? "border-red-400" : "border-[#EDE7DA]"
               }`}
             />
             {errors.name && (
               <p
                 id="contact-name-error"
                 role="alert"
-                className="mt-1.5 text-xs font-medium text-studio-orange"
+                className="mt-1.5 text-xs font-medium text-red-500"
               >
                 {errors.name}
               </p>
@@ -306,9 +303,9 @@ export function ContactFormClient() {
           <div>
             <label
               htmlFor="contact-company"
-              className="block text-xs font-bold uppercase tracking-[0.14em] text-studio-cream mb-2"
+              className="block text-xs font-bold uppercase tracking-wider text-[#191E1B] mb-2"
             >
-              Company or Brand <span className="text-studio-lime">*</span>
+              Company or Brand <span className="text-[#B88D44]">*</span>
             </label>
             <input
               id="contact-company"
@@ -324,16 +321,14 @@ export function ContactFormClient() {
               }
               placeholder="e.g. Aura Fine Jewels"
               className={`${inputBaseClass} ${
-                errors.company
-                  ? "border-studio-orange"
-                  : "border-studio-cream/15"
+                errors.company ? "border-red-400" : "border-[#EDE7DA]"
               }`}
             />
             {errors.company && (
               <p
                 id="contact-company-error"
                 role="alert"
-                className="mt-1.5 text-xs font-medium text-studio-orange"
+                className="mt-1.5 text-xs font-medium text-red-500"
               >
                 {errors.company}
               </p>
@@ -346,9 +341,9 @@ export function ContactFormClient() {
           <div>
             <label
               htmlFor="contact-email"
-              className="block text-xs font-bold uppercase tracking-[0.14em] text-studio-cream mb-2"
+              className="block text-xs font-bold uppercase tracking-wider text-[#191E1B] mb-2"
             >
-              Email Address <span className="text-studio-lime">*</span>
+              Email Address <span className="text-[#B88D44]">*</span>
             </label>
             <input
               id="contact-email"
@@ -364,14 +359,14 @@ export function ContactFormClient() {
               }
               placeholder="name@brand.com"
               className={`${inputBaseClass} ${
-                errors.email ? "border-studio-orange" : "border-studio-cream/15"
+                errors.email ? "border-red-400" : "border-[#EDE7DA]"
               }`}
             />
             {errors.email && (
               <p
                 id="contact-email-error"
                 role="alert"
-                className="mt-1.5 text-xs font-medium text-studio-orange"
+                className="mt-1.5 text-xs font-medium text-red-500"
               >
                 {errors.email}
               </p>
@@ -382,9 +377,9 @@ export function ContactFormClient() {
           <div>
             <label
               htmlFor="contact-phone"
-              className="block text-xs font-bold uppercase tracking-[0.14em] text-studio-cream mb-2"
+              className="block text-xs font-bold uppercase tracking-wider text-[#191E1B] mb-2"
             >
-              Phone / WhatsApp <span className="text-studio-lime">*</span>
+              Phone / WhatsApp <span className="text-[#B88D44]">*</span>
             </label>
             <input
               id="contact-phone"
@@ -400,14 +395,14 @@ export function ContactFormClient() {
               }
               placeholder="+91 98765 43210"
               className={`${inputBaseClass} ${
-                errors.phone ? "border-studio-orange" : "border-studio-cream/15"
+                errors.phone ? "border-red-400" : "border-[#EDE7DA]"
               }`}
             />
             {errors.phone && (
               <p
                 id="contact-phone-error"
                 role="alert"
-                className="mt-1.5 text-xs font-medium text-studio-orange"
+                className="mt-1.5 text-xs font-medium text-red-500"
               >
                 {errors.phone}
               </p>
@@ -420,9 +415,9 @@ export function ContactFormClient() {
           <div>
             <label
               htmlFor="contact-service"
-              className="block text-xs font-bold uppercase tracking-[0.14em] text-studio-cream mb-2"
+              className="block text-xs font-bold uppercase tracking-wider text-[#191E1B] mb-2"
             >
-              Service Required <span className="text-studio-lime">*</span>
+              Service Required <span className="text-[#B88D44]">*</span>
             </label>
             <select
               id="contact-service"
@@ -435,9 +430,7 @@ export function ContactFormClient() {
                 errors.service ? "contact-service-error" : undefined
               }
               className={`${inputBaseClass} ${
-                errors.service
-                  ? "border-studio-orange"
-                  : "border-studio-cream/15"
+                errors.service ? "border-red-400" : "border-[#EDE7DA]"
               }`}
             >
               <option value="">Select a primary service...</option>
@@ -454,28 +447,28 @@ export function ContactFormClient() {
               <p
                 id="contact-service-error"
                 role="alert"
-                className="mt-1.5 text-xs font-medium text-studio-orange"
+                className="mt-1.5 text-xs font-medium text-red-500"
               >
                 {errors.service}
               </p>
             )}
           </div>
 
-          {/* Project Budget (Optional) */}
+          {/* Project Budget */}
           <div>
             <label
               htmlFor="contact-budget"
-              className="block text-xs font-bold uppercase tracking-[0.14em] text-studio-cream mb-2"
+              className="block text-xs font-bold uppercase tracking-wider text-[#191E1B] mb-2"
             >
               Project Budget{" "}
-              <span className="text-studio-muted font-normal">(Optional)</span>
+              <span className="text-[#8A948E] font-normal">(Optional)</span>
             </label>
             <select
               id="contact-budget"
               name="budget"
               value={values.budget}
               onChange={(e) => handleChange("budget", e.target.value)}
-              className={`${inputBaseClass} border-studio-cream/15`}
+              className={`${inputBaseClass} border-[#EDE7DA]`}
             >
               <option value="">Select an estimated range...</option>
               {BUDGET_OPTIONS.map((budget) => (
@@ -491,9 +484,9 @@ export function ContactFormClient() {
         <div>
           <label
             htmlFor="contact-details"
-            className="block text-xs font-bold uppercase tracking-[0.14em] text-studio-cream mb-2"
+            className="block text-xs font-bold uppercase tracking-wider text-[#191E1B] mb-2"
           >
-            Project Details <span className="text-studio-lime">*</span>
+            Project Details <span className="text-[#B88D44]">*</span>
           </label>
           <textarea
             id="contact-details"
@@ -508,26 +501,26 @@ export function ContactFormClient() {
             }
             placeholder="Tell us about your brand, location, timeline, and what you want to create..."
             className={`${inputBaseClass} ${
-              errors.details ? "border-studio-orange" : "border-studio-cream/15"
+              errors.details ? "border-red-400" : "border-[#EDE7DA]"
             }`}
           />
           {errors.details && (
             <p
               id="contact-details-error"
               role="alert"
-              className="mt-1.5 text-xs font-medium text-studio-orange"
+              className="mt-1.5 text-xs font-medium text-red-500"
             >
               {errors.details}
             </p>
           )}
         </div>
 
-        {/* Submit & Direct WhatsApp Row */}
+        {/* Submit & WhatsApp Row */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="inline-flex items-center justify-center gap-2.5 rounded-full bg-studio-lime px-8 py-4 text-xs sm:text-sm font-bold uppercase tracking-[0.1em] text-studio-ink transition-all duration-200 hover:bg-studio-cream disabled:opacity-60"
+            className="inline-flex items-center justify-center gap-2.5 rounded-full bg-[#B88D44] hover:bg-[#A37B35] px-8 py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-white transition-all duration-200 shadow-md disabled:opacity-60"
           >
             {status === "submitting" ? (
               <>
@@ -546,58 +539,53 @@ export function ContactFormClient() {
             href={getWhatsAppEnquiryUrl(buildFormattedMessage())}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-studio-cream/20 bg-studio-charcoal px-6 py-4 text-xs sm:text-sm font-bold uppercase tracking-[0.1em] text-studio-cream transition-colors hover:border-studio-lime hover:text-studio-lime"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-[#EDE7DA] bg-[#FAF7F2] px-6 py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#191E1B] transition-colors hover:border-[#B88D44]"
           >
-            <MessageCircle
-              className="h-4 w-4 text-studio-lime"
-              aria-hidden="true"
-            />
+            <MessageCircle className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
             <span>Send via WhatsApp Instead</span>
           </a>
         </div>
 
-        {/* Real Success State */}
+        {/* Success Message */}
         {status === "success" && (
           <div
             role="status"
             aria-live="polite"
-            className="rounded-2xl border border-studio-lime/50 bg-studio-lime/10 p-5 text-sm text-studio-cream flex items-start gap-3"
+            className="rounded-2xl border border-emerald-300 bg-emerald-50 p-5 text-sm text-emerald-950 flex items-start gap-3 shadow-xs"
           >
             <CheckCircle2
-              className="h-5 w-5 shrink-0 text-studio-lime mt-0.5"
+              className="h-5 w-5 shrink-0 text-emerald-600 mt-0.5"
               aria-hidden="true"
             />
-            <div className="space-y-1.5">
-              <p className="font-semibold text-studio-lime">Enquiry Received</p>
-              <p className="text-studio-cream/90">{serverMessage}</p>
+            <div className="space-y-1">
+              <p className="font-semibold text-emerald-900">Enquiry Received</p>
+              <p className="text-emerald-800">{serverMessage}</p>
               {serverWarning && (
-                <p className="text-xs text-studio-muted pt-1">
-                  Note: {serverWarning}
-                </p>
+                <p className="text-xs text-emerald-700 pt-1">Note: {serverWarning}</p>
               )}
             </div>
           </div>
         )}
 
-        {/* Transparent Backend-Not-Configured / Error State with Instant WhatsApp & Mailto Actions */}
+        {/* Transparent Fallback Actions */}
         {(status === "backend_unconfigured" || status === "error") && (
           <div
             role="alert"
             aria-live="assertive"
-            className="rounded-2xl border border-studio-lime/45 bg-studio-charcoal p-6 text-sm text-studio-cream space-y-4"
+            className="rounded-2xl border border-[#EDE7DA] bg-[#FAF7F2] p-6 text-sm text-[#191E1B] space-y-4"
           >
             <div className="flex items-start gap-3">
               <AlertCircle
-                className="h-5 w-5 shrink-0 text-studio-lime mt-0.5"
+                className="h-5 w-5 shrink-0 text-[#B88D44] mt-0.5"
                 aria-hidden="true"
               />
               <div>
-                <p className="font-heading font-bold text-base text-studio-cream">
+                <p className="font-heading font-bold text-base text-[#191E1B]">
                   {status === "backend_unconfigured"
-                    ? "Supabase & Resend Not Configured Yet — Instant WhatsApp & Email Ready"
+                    ? "Instant WhatsApp & Email Ready"
                     : "Submission Notice"}
                 </p>
-                <p className="mt-1 text-studio-muted leading-relaxed">
+                <p className="mt-1 text-[#68716B] leading-relaxed">
                   {serverMessage}
                 </p>
               </div>
@@ -608,23 +596,20 @@ export function ContactFormClient() {
                 href={getWhatsAppEnquiryUrl(buildFormattedMessage())}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-studio-lime px-5 py-3 text-xs sm:text-sm font-bold uppercase tracking-[0.08em] text-studio-ink transition-colors hover:bg-studio-cream"
+                className="inline-flex items-center gap-2 rounded-full bg-[#B88D44] hover:bg-[#A37B35] px-5 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-white transition-colors shadow-sm"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
                 <span>
-                  Send Prefilled Enquiry on WhatsApp ({siteConfig.whatsappNumber})
+                  Send on WhatsApp ({siteConfig.whatsappNumber})
                 </span>
               </a>
 
               <a
                 href={buildMailtoHref()}
-                className="inline-flex items-center gap-2 rounded-full border border-studio-cream/20 bg-studio-charcoalDeep px-5 py-3 text-xs sm:text-sm font-bold text-studio-cream transition-colors hover:border-studio-lime hover:text-studio-lime"
+                className="inline-flex items-center gap-2 rounded-full border border-[#EDE7DA] bg-white px-5 py-3 text-xs sm:text-sm font-bold text-[#191E1B] transition-colors hover:border-[#B88D44]"
               >
-                <Mail
-                  className="h-4 w-4 text-studio-lime"
-                  aria-hidden="true"
-                />
-                <span>Open Prefilled Email ({siteConfig.email})</span>
+                <Mail className="h-4 w-4 text-[#B88D44]" aria-hidden="true" />
+                <span>Open Email ({siteConfig.email})</span>
               </a>
             </div>
           </div>
