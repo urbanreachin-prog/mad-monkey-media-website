@@ -197,7 +197,7 @@ home = '''
     <div class="stage">
       <div class="ph a"><div class="scr">%(r1)s</div></div>
       <div class="ph b"><div class="scr">%(r2)s</div></div>
-      <span class="chip ch1">Reels</span><span class="chip ch2">Brand films</span><span class="chip ch3">Meta ads</span>
+      <span class="chip ch1">Reels</span><span class="chip ch2">Brand films</span>
       <div class="badge"><svg viewBox="0 0 150 150"><defs><path id="cp" d="M75 75m-58 0a58 58 0 1 1 116 0a58 58 0 1 1-116 0"/></defs><text><textPath href="#cp">1.3 billion views generated &bull; 1.3 billion views generated &bull;</textPath></text></svg><div>1.3B</div></div>
     </div>
   </div>

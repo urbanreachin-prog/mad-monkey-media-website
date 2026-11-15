@@ -505,3 +505,7 @@ main,.foot{overflow-x:clip}
 .mark img{object-fit:contain;padding:3px;image-rendering:auto}
 .brand{white-space:nowrap}
 @media (max-width:520px){.brand{font-size:17px;gap:9px}.mark{width:40px;height:40px}}
+
+/* hero phones: no play button; "Brand films" chip sits lower */
+.ph .rl .pl{display:none}
+.ch2{bottom:14px}
