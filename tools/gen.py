@@ -1,5 +1,6 @@
 import os, sys
 OUT = sys.argv[1]
+LDJSON = '<script type="application/ld+json">' + '{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Mad Monkey Media", "url": "https://themadmonkey.in/", "logo": "https://themadmonkey.in/assets/images/apple-touch-icon.png", "image": "https://themadmonkey.in/assets/images/og.jpg", "description": "Mad Monkey Media is an independent video production and creative studio in Gwalior, Madhya Pradesh, making vertical reels, cinematic commercials and ads for showrooms, brands and creators in India, the USA and Vietnam.", "telephone": "+917470637758", "founder": {"@type": "Person", "name": "Krishna Gupta"}, "address": {"@type": "PostalAddress", "addressLocality": "Gwalior", "addressRegion": "Madhya Pradesh", "addressCountry": "IN"}, "areaServed": ["Gwalior", "India", "United States", "Vietnam"], "knowsAbout": ["Video production", "Instagram Reels", "Brand films", "Meta Ads", "UGC ads", "Colour grading", "Podcast editing"]}' + '</script>'
 WA = "https://wa.me/917470637758"
 
 ICONS = {
@@ -90,6 +91,20 @@ def shell(title, desc, active, body):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>%(title)s</title>
 <meta name="description" content="%(desc)s">
+<link rel="canonical" href="https://themadmonkey.in/%(canon)s">
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mad Monkey Media">
+<meta property="og:title" content="%(title)s">
+<meta property="og:description" content="%(desc)s">
+<meta property="og:url" content="https://themadmonkey.in/%(canon)s">
+<meta property="og:image" content="https://themadmonkey.in/assets/images/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="%(title)s">
+<meta name="twitter:description" content="%(desc)s">
+<meta name="twitter:image" content="https://themadmonkey.in/assets/images/og.jpg">
+%(ld)s
 <meta name="theme-color" content="#790B13">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -130,7 +145,7 @@ def shell(title, desc, active, body):
 <script src="script.js"></script>
 </body>
 </html>
-''' % dict(title=title, desc=desc, sprite=sprite(), ticker=ticker, nav=nav(active), wa=WA, body=body, fs=fs)
+''' % dict(title=title, desc=desc, sprite=sprite(), ticker=ticker, nav=nav(active), wa=WA, body=body, fs=fs, canon=('' if active=='index.html' else active), ld=(LDJSON if active=='index.html' else ''))
 
 def reel(cls="", tag="", title="", video=None, auto=False, poster=None):
     v = ' data-video="%s"' % video if video else ""
@@ -285,7 +300,7 @@ home = '''
     h_rev=L('Loved by', '<span class="it">650+ customers</span>'), reviews=review_cards(),
     h_aud=L("Who we", '<span class="it">work with</span>'), h_faq=L("Questions we", '<span class="it">often hear</span>'),
     faq=faq(FAQ[:5]), cta=cta(L("Let's make your", '<span class="it">next video</span>')))
-write("index.html", shell("Mad Monkey Media | Reels, Brand Films and Ads", "Mad Monkey Media is a video production studio serving the USA, Vietnam and India. Reels, brand films and ads for showrooms, brands and creators.", "index.html", home))
+write("index.html", shell("Mad Monkey Media | Video Production Studio in Gwalior", "Mad Monkey Media is a video production studio in Gwalior, serving brands in India, the USA and Vietnam. Reels, brand films and ads for showrooms, brands and creators.", "index.html", home))
 
 # ============================== SERVICES
 chips = '<div class="chips" data-r style="--dl:.4s">%s</div>' % "".join('<a href="#%s">%s</a>' % (s["id"], s["name"]) for s in SERVICES)
