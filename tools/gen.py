@@ -59,6 +59,8 @@ SERVICES = [
   inc=["Animated titles, text and graphics", "Film-style colour grading with natural skin tones", "Sound clean-up and sound design"], best=["Everyone"]),
 ]
 FAQ = [
+ ("What is Mad Monkey Media?", "Mad Monkey Media (themadmonkey.in) is an independent video production and creative studio based in Gwalior, Madhya Pradesh, founded by Krishna Gupta. We make vertical reels, cinematic commercials and digital content systems for showrooms, brands and creators across India, the USA and Vietnam. We are not affiliated with other businesses that use a similar name."),
+ ("Where is Mad Monkey Media based?", "We are based in Gwalior, Madhya Pradesh, India, and work with clients in India, the USA and Vietnam."),
  ("How fast do I get the first video?", "Usually within 24-48 hours of receiving your footage or brief."),
  ("Can I ask for changes?", "Yes. Revisions are unlimited until you are happy with the video."),
  ("Do you shoot too, or only edit?", "Both. We can shoot at your showroom or studio, or edit footage you already have."),
