@@ -302,7 +302,7 @@ home = '''
     h_rev=L('Loved by', '<span class="it">650+ customers</span>'), reviews=review_cards(),
     h_aud=L("Who we", '<span class="it">work with</span>'), h_faq=L("Questions we", '<span class="it">often hear</span>'),
     faq=faq(FAQ[:5]), cta=cta(L("Let's make your", '<span class="it">next video</span>')))
-write("index.html", shell("Mad Monkey Media | Video Production Studio in Gwalior", "Mad Monkey Media is a video production studio in Gwalior, serving brands in India, the USA and Vietnam. Reels, brand films and ads for showrooms, brands and creators.", "index.html", home))
+write("index.html", shell("Mad Monkey Media | Video Production Studio", "Mad Monkey Media is a video production studio serving brands in India, the USA and Vietnam. Reels, brand films and ads for showrooms, brands and creators.", "index.html", home))
 
 # ============================== SERVICES
 chips = '<div class="chips" data-r style="--dl:.4s">%s</div>' % "".join('<a href="#%s">%s</a>' % (s["id"], s["name"]) for s in SERVICES)
