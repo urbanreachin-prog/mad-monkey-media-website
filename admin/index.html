@@ -3,11 +3,65 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<title>Mad Monkey Media | Content Manager</title>
-<link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
+<meta name="robots" content="noindex, nofollow">
+<title>Mad Monkey Media | Site Editor</title>
+<link rel="icon" href="/assets/images/favicon.png">
+<link rel="stylesheet" href="/admin/app.css">
 </head>
 <body>
-<script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+
+<div id="login">
+  <div class="login-card">
+    <img src="/assets/images/apple-touch-icon.png" alt="" width="64" height="64">
+    <h1>Site Editor</h1>
+    <p>Sign in with your GitHub token to edit the Mad Monkey Media website. Your token stays in this browser only.</p>
+    <input id="tok" type="password" placeholder="Paste your GitHub token" autocomplete="off" spellcheck="false">
+    <button id="login-btn" class="btn primary">Sign in</button>
+    <p id="login-msg" class="msg"></p>
+  </div>
+</div>
+
+<div id="app" hidden>
+  <header class="top">
+    <div class="brand"><img src="/assets/images/favicon.png" alt="" width="28" height="28"><b>Site Editor</b></div>
+    <div class="status" id="status">Loading…</div>
+    <div class="spacer"></div>
+    <div class="seg" id="device-seg">
+      <button data-d="phone" class="on">Phone</button>
+      <button data-d="desktop">Desktop</button>
+    </div>
+    <button id="discard" class="btn" disabled>Discard changes</button>
+    <button id="publish" class="btn primary" disabled>Publish</button>
+    <button id="menu-btn" class="btn icon" aria-label="Menu">⋯</button>
+    <div id="menu" class="menu" hidden>
+      <a href="/" target="_blank" rel="noopener">Open live site</a>
+      <button id="signout">Sign out</button>
+    </div>
+  </header>
+
+  <div class="grid">
+    <aside class="left">
+      <h3>Pages</h3>
+      <nav id="pages"></nav>
+      <h3>Sections</h3>
+      <nav id="sections"></nav>
+    </aside>
+
+    <main class="center">
+      <div class="stage" id="stage">
+        <div class="device phone" id="device">
+          <iframe id="pv" title="Live preview"></iframe>
+        </div>
+      </div>
+      <div class="pv-note" id="pv-note"></div>
+    </main>
+
+    <section class="right">
+      <div id="editor"></div>
+    </section>
+  </div>
+</div>
+
+<script src="/admin/app.js"></script>
 </body>
 </html>
