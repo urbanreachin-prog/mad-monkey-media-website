@@ -1,0 +1,84 @@
+{
+  "h": [
+    "Work we are",
+    "*proud of*"
+  ],
+  "lead": "A selection of reels, brand videos and ads we have made. Click any video to watch it full size.",
+  "items": [
+    {
+      "title": "Trending editing style",
+      "category": "creator",
+      "video": "/assets/reels/reel-11.mp4",
+      "poster": "/assets/images/reel-11.jpg"
+    },
+    {
+      "title": "Brand story",
+      "category": "brand",
+      "video": "/assets/reels/reel-2.mp4",
+      "poster": "/assets/images/reel-2.jpg"
+    },
+    {
+      "title": "Real estate edit",
+      "category": "brand",
+      "video": "/assets/reels/reel-10.mp4",
+      "poster": "/assets/images/reel-10.jpg"
+    },
+    {
+      "title": "Podcast trailer",
+      "category": "creator",
+      "video": "/assets/reels/reel-7.mp4",
+      "poster": "/assets/images/reel-7.jpg"
+    },
+    {
+      "title": "Healthcare",
+      "category": "ads",
+      "video": "/assets/reels/reel-8.mp4",
+      "poster": "/assets/images/reel-8.jpg"
+    },
+    {
+      "title": "TVS promo",
+      "category": "ads",
+      "video": "/assets/reels/reel-4.mp4",
+      "poster": "/assets/images/reel-4.jpg"
+    },
+    {
+      "title": "Real estate showreel",
+      "category": "brand",
+      "video": "/assets/reels/reel-9.mp4",
+      "poster": "/assets/images/reel-9.jpg"
+    },
+    {
+      "title": "3M Car Care",
+      "category": "showroom",
+      "video": "/assets/reels/reel-1.mp4",
+      "poster": "/assets/images/reel-1.jpg"
+    },
+    {
+      "title": "Jewellery trend",
+      "category": "showroom",
+      "video": "/assets/reels/reel-5.mp4",
+      "poster": "/assets/images/reel-5.jpg"
+    },
+    {
+      "title": "Growth campaign",
+      "category": "brand",
+      "video": "/assets/reels/reel-6.mp4",
+      "poster": "/assets/images/reel-6.jpg"
+    },
+    {
+      "title": "Creator edit",
+      "category": "creator",
+      "video": "/assets/reels/reel-3.mp4",
+      "poster": "/assets/images/reel-3.jpg"
+    }
+  ],
+  "cta_h": [
+    "Want results like",
+    "*these?*"
+  ],
+  "cta_p": "Tell us about your business and we will plan your first videos.",
+  "seo": {
+    "title": "Portfolio | Mad Monkey Media",
+    "description": "Reels, brand films and ads made by Mad Monkey Media for showrooms, brands and creators."
+  }
+}

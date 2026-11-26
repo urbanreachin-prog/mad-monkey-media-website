@@ -1,6 +1,6 @@
 {
   "framework": null,
-  "buildCommand": null,
   "installCommand": null,
-  "outputDirectory": "."
+  "buildCommand": "python3 tools/build.py",
+  "outputDirectory": "dist"
 }

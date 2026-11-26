@@ -1,0 +1,89 @@
+{
+  "h": [
+    "A video studio built",
+    "around *attention*"
+  ],
+  "lead": "We help local showrooms, growing brands and creators look better on screen and get more people to take action.",
+  "story_h": "Built in Gwalior. Driven by a *bigger vision.*",
+  "story": [
+    "Mad Monkey Media started in Gwalior, Madhya Pradesh, eight years ago with a simple belief: every brand has a story worth telling, and every story deserves to be told right.",
+    "Founded by Krishna Gupta, what began as a creative vision has grown into an independent video production and creative studio, working with brands across India, the USA and Vietnam.",
+    "Over the years, we've worked on countless projects, collaborated with different businesses, and helped brands turn their ideas into stories that connect with people. Every project has taught us something, and every client has been a part of our journey.",
+    "Today, we create vertical reels, cinematic commercials and digital content systems for brands that want to stand out and grow.",
+    "We're still rooted in Gwalior, but our vision has always been bigger than a location.",
+    "Behind every project is a team that cares about the details, takes ownership of the work, and believes in doing things properly.",
+    "If you have a story to tell, we'd love to be a part of it."
+  ],
+  "values_h": [
+    "What we",
+    "*believe*"
+  ],
+  "values": [
+    {
+      "icon": "ads",
+      "title": "Hook first",
+      "text": "The first three seconds decide whether anyone keeps watching, so we design them before anything else."
+    },
+    {
+      "icon": "eye",
+      "title": "Every frame matters",
+      "text": "Colour, sound and pacing are checked on every video. Small details make a brand look premium."
+    },
+    {
+      "icon": "bolt",
+      "title": "Speed, not shortcuts",
+      "text": "Fast does not mean careless. You get your first cut in 24-48 hours, made properly."
+    },
+    {
+      "icon": "chat",
+      "title": "Plain talk",
+      "text": "No heavy jargon. We explain what we are doing and why, in words you can use."
+    }
+  ],
+  "process_h": [
+    "How a project",
+    "*runs*"
+  ],
+  "process_lead": "Six clear steps from the first message to the final file.",
+  "timeline": [
+    {
+      "n": "01",
+      "title": "Brief",
+      "text": "You tell us about your business, goals and the people you want to reach."
+    },
+    {
+      "n": "02",
+      "title": "Plan",
+      "text": "We write the hook, script and shot list, and agree the plan with you."
+    },
+    {
+      "n": "03",
+      "title": "Shoot",
+      "text": "Our crew films at your location or in our setup with proper lighting."
+    },
+    {
+      "n": "04",
+      "title": "Edit",
+      "text": "Editing, sound and colour come together into your first cut."
+    },
+    {
+      "n": "05",
+      "title": "Review",
+      "text": "You watch the cut and ask for changes. Revisions are unlimited."
+    },
+    {
+      "n": "06",
+      "title": "Deliver",
+      "text": "You get final files in the right formats, ready to post or run as ads."
+    }
+  ],
+  "cta_h": [
+    "Let's work",
+    "*together*"
+  ],
+  "cta_p": "Tell us about your business and we will plan the right videos for you.",
+  "seo": {
+    "title": "About | Mad Monkey Media",
+    "description": "Mad Monkey Media is an independent video production studio serving the USA, Vietnam and India making reels, commercials and digital media for brands."
+  }
+}

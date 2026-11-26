@@ -1,0 +1,81 @@
+{
+  "whatsapp": "917470637758",
+  "phone_display": "+91 74706 37758",
+  "phone_tel": "+917470637758",
+  "stats": [
+    {
+      "value": 1.3,
+      "decimals": 1,
+      "suffix": "B",
+      "label": "Views generated"
+    },
+    {
+      "value": 80,
+      "decimals": 0,
+      "suffix": "+",
+      "label": "Brand partners"
+    },
+    {
+      "value": 24,
+      "decimals": 0,
+      "suffix": "h",
+      "label": "First cut turnaround"
+    },
+    {
+      "value": 4.9,
+      "decimals": 1,
+      "suffix": "/5",
+      "label": "Client rating"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is Mad Monkey Media?",
+      "a": "Mad Monkey Media (themadmonkey.in) is an independent video production and creative studio based in Gwalior, Madhya Pradesh, founded by Krishna Gupta. We make vertical reels, cinematic commercials and digital content systems for showrooms, brands and creators across India, the USA and Vietnam. We are not affiliated with other businesses that use a similar name.",
+      "home": true,
+      "contact": true
+    },
+    {
+      "q": "Where is Mad Monkey Media based?",
+      "a": "We are based in Gwalior, Madhya Pradesh, India, and work with clients in India, the USA and Vietnam.",
+      "home": true,
+      "contact": false
+    },
+    {
+      "q": "How fast do I get the first video?",
+      "a": "Usually within 24-48 hours of receiving your footage or brief.",
+      "home": true,
+      "contact": false
+    },
+    {
+      "q": "Can I ask for changes?",
+      "a": "Yes. Revisions are unlimited until you are happy with the video.",
+      "home": true,
+      "contact": true
+    },
+    {
+      "q": "Do you shoot too, or only edit?",
+      "a": "Both. We can shoot at your showroom or studio, or edit footage you already have.",
+      "home": true,
+      "contact": false
+    },
+    {
+      "q": "What do I need to get started?",
+      "a": "Just a message on WhatsApp telling us about your business and what you want to achieve. We take it from there.",
+      "home": false,
+      "contact": true
+    },
+    {
+      "q": "Which formats do you deliver?",
+      "a": "Vertical 9:16 for Reels and Stories, plus widescreen versions for YouTube and your website.",
+      "home": false,
+      "contact": false
+    },
+    {
+      "q": "How much does it cost?",
+      "a": "It depends on what you need, how many videos and whether we shoot. Message us and we will share a clear quote.",
+      "home": false,
+      "contact": false
+    }
+  ]
+}

@@ -150,7 +150,7 @@
     v.addEventListener('loadedmetadata', mark, { once: true });
     v.addEventListener('loadeddata', mark, { once: true });
     v.addEventListener('error', () => v.remove(), { once: true });
-    v.src = rl.dataset.video;
+    v.src = rl.dataset.video + (rl.dataset.video.indexOf('#') < 0 ? '#t=0.1' : '');  // #t shows the first frame on phones
     rl.appendChild(v);
     const host = rl.closest('.card') || rl.closest('.ph');
     if (host) {

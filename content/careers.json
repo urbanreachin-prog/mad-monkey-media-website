@@ -1,0 +1,57 @@
+{
+  "h": [
+    "Build videos people",
+    "*cannot scroll past*"
+  ],
+  "lead": "We are always happy to meet talented editors, camera people, designers and marketers. Send us your work and tell us what you love doing.",
+  "why_h": [
+    "Why join",
+    "*us*"
+  ],
+  "why": [
+    {
+      "icon": "bolt",
+      "title": "Real work, real reach",
+      "text": "Your edits and shoots go live for real showrooms, brands and creators."
+    },
+    {
+      "icon": "users",
+      "title": "Learn from seniors",
+      "text": "Work alongside senior editors and get feedback that helps you improve."
+    },
+    {
+      "icon": "reels",
+      "title": "Fast-moving team",
+      "text": "Short turnaround means you see your work published quickly."
+    }
+  ],
+  "roles_h": [
+    "Roles we",
+    "*look for*"
+  ],
+  "roles_lead": "Do not see your role? Apply anyway and tell us how you can help.",
+  "roles": [
+    {
+      "title": "Video Editor",
+      "text": "Reels, brand films and ads. Strong sense of pace and sound."
+    },
+    {
+      "title": "Videographer",
+      "text": "Vertical and cinematic shooting, lighting and camera movement."
+    },
+    {
+      "title": "Motion Designer",
+      "text": "Animated titles, graphics and clean visual polish."
+    },
+    {
+      "title": "Meta Ads Executive",
+      "text": "Campaign setup, audience testing and creative reporting."
+    }
+  ],
+  "apply_h": "Send your work, *we will take a look.*",
+  "apply_text": "Share a link to your portfolio, showreel or best edits. We read every application.",
+  "seo": {
+    "title": "Careers | Mad Monkey Media",
+    "description": "Join Mad Monkey Media, a video production studio serving the USA, Vietnam and India. Editors, videographers, designers and marketers welcome."
+  }
+}
