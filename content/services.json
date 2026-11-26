@@ -1,0 +1,194 @@
+{
+  "h": [
+    "Eight ways we",
+    "help you *get noticed*"
+  ],
+  "lead": "Every service is built around one goal: more attention and more enquiries for you. Choose what you need now, add more later.",
+  "items": [
+    {
+      "id": "reels",
+      "name": "Reels Production",
+      "icon": "reels",
+      "flag": true,
+      "tag": "Short videos made to hold attention.",
+      "short": "Vertical 4K reels with a strong hook, clean sound and a pace that keeps people watching.",
+      "long": "Short videos are often the first time a customer meets your brand. We plan the hook, shoot in vertical 4K from more than one angle, and edit for pace, so people stay till the last second and remember who you are.",
+      "inc": [
+        "Hook and script written for vertical formats",
+        "Multi-angle 4K vertical filming with close-up detail shots",
+        "Editing with captions, music and sound effects",
+        "First cut in 24-48 hours, unlimited revisions, 9:16 final files"
+      ],
+      "best": [
+        "Showrooms",
+        "Brands",
+        "Creators"
+      ]
+    },
+    {
+      "id": "video",
+      "name": "Video Production",
+      "icon": "video",
+      "tag": "Brand films and commercials with a cinematic look.",
+      "short": "Brand films, commercials and walkthroughs shot with proper lighting and smooth movement.",
+      "long": "When your story needs more depth, we produce brand films, product commercials and walkthroughs of showrooms, homes and buildings. Everything is planned before the shoot, so the day runs smoothly and the final film looks premium.",
+      "inc": [
+        "Storyboard, location scouting and shoot schedule",
+        "Cinema camera, lighting and stabilised movement",
+        "Editing, custom sound design and colour grading"
+      ],
+      "best": [
+        "Brands",
+        "Showrooms",
+        "Real estate"
+      ]
+    },
+    {
+      "id": "content",
+      "name": "Content Production",
+      "icon": "content",
+      "tag": "Photos and visuals shot around your brand.",
+      "short": "Product and lifestyle photography, planned with a shot list and shot in studio or on location.",
+      "long": "A strong library of photos and visuals keeps every post, ad and web page looking consistent. We plan the shots first, then shoot your products and lifestyle scenes on location or in a studio.",
+      "inc": [
+        "Creative concept and shot list",
+        "Product and lifestyle photography, on location or in studio",
+        "Campaign visuals for posts, ads and your website"
+      ],
+      "best": [
+        "Brands",
+        "Showrooms"
+      ]
+    },
+    {
+      "id": "ads",
+      "name": "Meta Ads",
+      "icon": "ads",
+      "tag": "Ads that bring enquiries, not just views.",
+      "short": "Ad creatives and campaign setup so your best content reaches the right people.",
+      "long": "Good ads start with good creative. We make the videos and images, then set up your Meta campaigns so the right audience sees them. We keep testing different creatives to find what brings you the best response.",
+      "inc": [
+        "Ad creatives: video hooks, static and carousel versions",
+        "Campaign structure and audience setup",
+        "Creative testing to see what works best"
+      ],
+      "best": [
+        "Brands",
+        "Showrooms",
+        "Online stores"
+      ]
+    },
+    {
+      "id": "personal",
+      "name": "Personal Branding",
+      "icon": "personal",
+      "tag": "Content that makes founders and experts stand out.",
+      "short": "Positioning, scripts and batch filming for founders, creators and industry experts.",
+      "long": "People trust people. We help founders, creators and industry experts show their knowledge on camera with confidence, without spending every week on content. We plan what to say, film in batches and edit it with authority.",
+      "inc": [
+        "Brand positioning and content pillar mapping",
+        "Topic research and conversational script outlines",
+        "Batch filming sessions at a studio or your office"
+      ],
+      "best": [
+        "Founders",
+        "Creators",
+        "Experts"
+      ]
+    },
+    {
+      "id": "ugc",
+      "name": "UGC Ads",
+      "icon": "ugc",
+      "tag": "Creator-style videos that feel real and convert.",
+      "short": "Natural, creator-style ad videos built for Instagram and Facebook.",
+      "long": "Ads that look like a real person's recommendation often work better than polished ones. We script, shoot and edit UGC-style videos built for Instagram and Facebook, with several versions to test.",
+      "inc": [
+        "Creator-style scripts and hooks",
+        "Multiple variations of the same ad for testing",
+        "Edits sized for Reels, Stories and feed ads"
+      ],
+      "best": [
+        "Brands",
+        "Online stores",
+        "Showrooms"
+      ]
+    },
+    {
+      "id": "podcast",
+      "name": "Podcast and YouTube",
+      "icon": "podcast",
+      "tag": "Long conversations turned into watchable content.",
+      "short": "Multi-camera podcast edits, YouTube cuts and short clips pulled from long recordings.",
+      "long": "We edit multi-camera podcasts and YouTube videos, then pull the best moments out as short clips for Reels and Shorts. One recording can feed a whole week of content.",
+      "inc": [
+        "Multi-camera podcast editing",
+        "Short clips for Reels and Shorts",
+        "YouTube long-form cuts with clean pacing and sound"
+      ],
+      "best": [
+        "Creators",
+        "Founders"
+      ]
+    },
+    {
+      "id": "motion",
+      "name": "Motion and Colour",
+      "icon": "motion",
+      "tag": "Titles, animation and film-style colour.",
+      "short": "Animated graphics and film-style colour grading that lift ordinary footage.",
+      "long": "Motion graphics, animated text and careful colour grading make footage look finished. We add them to our own shoots or to videos you already have.",
+      "inc": [
+        "Animated titles, text and graphics",
+        "Film-style colour grading with natural skin tones",
+        "Sound clean-up and sound design"
+      ],
+      "best": [
+        "Everyone"
+      ]
+    }
+  ],
+  "combos_h": [
+    "Not sure",
+    "*where to start?*"
+  ],
+  "combos_lead": "These combinations work well for most clients. We adjust them to your budget and goals.",
+  "combos": [
+    {
+      "title": "For showrooms",
+      "text": "A good starting mix to bring in walk-ins.",
+      "bullets": [
+        "Reels Production",
+        "Meta Ads",
+        "Content Production"
+      ]
+    },
+    {
+      "title": "For brands",
+      "text": "Build a premium look and then push it with ads.",
+      "bullets": [
+        "Video Production",
+        "UGC Ads",
+        "Motion and Colour"
+      ]
+    },
+    {
+      "title": "For creators",
+      "text": "Turn one recording into a full week of posts.",
+      "bullets": [
+        "Podcast and YouTube",
+        "Reels Production",
+        "Personal Branding"
+      ]
+    }
+  ],
+  "cta_h": [
+    "Tell us what you",
+    "*need*"
+  ],
+  "cta_p": "Share your idea and we will suggest the right mix of services.",
+  "seo": {
+    "title": "Services | Mad Monkey Media",
+    "description": "Reels, brand films, content production, Meta ads, UGC ads, personal branding, podcast edits and motion graphics from Mad Monkey Media."
+  }
+}

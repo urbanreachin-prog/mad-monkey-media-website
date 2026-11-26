@@ -1,0 +1,233 @@
+{
+  "eyebrow": "Video studio · USA · Vietnam · India",
+  "h1": [
+    "We make brands",
+    "*impossible* to",
+    "scroll past."
+  ],
+  "rating": {
+    "score": "4.9",
+    "label": "Loved by 650+ customers"
+  },
+  "lead": "Mad Monkey Media makes reels, brand films and ads for showrooms, brands and creators, so more people notice you, trust you and get in touch.",
+  "hero_reels": [
+    {
+      "tag": "Showreel",
+      "title": "Real estate showreel",
+      "video": "/assets/reels/reel-9.mp4",
+      "poster": "/assets/images/reel-9.jpg"
+    },
+    {
+      "tag": "Brand",
+      "title": "Brand story",
+      "video": "/assets/reels/reel-2.mp4",
+      "poster": "/assets/images/reel-2.jpg"
+    }
+  ],
+  "chips": [
+    "Reels",
+    "Brand films"
+  ],
+  "badge": {
+    "big": "1.3B",
+    "ring": "1.3 billion views generated"
+  },
+  "marquee_top": [
+    "Reels",
+    "Brand films",
+    "Meta ads",
+    "UGC",
+    "Colour grading",
+    "Podcast edits"
+  ],
+  "marquee_mid": [
+    "Hook",
+    "Shoot",
+    "Edit",
+    "Grade",
+    "Post",
+    "Repeat"
+  ],
+  "statement": "We are a video studio that turns *ordinary* businesses into brands people *remember.* One team plans, shoots, edits and runs your ads, so you get more views, more trust and more enquiries.",
+  "services": {
+    "h": [
+      "Everything your",
+      "videos *need*"
+    ],
+    "lead": "From the first idea to the final file, one team handles planning, shooting, editing and ads. Pick one service or combine a few."
+  },
+  "work": {
+    "h": [
+      "Reels that stop",
+      "the *scroll*"
+    ],
+    "cards": [
+      {
+        "title": "3M Car Care",
+        "category": "showroom",
+        "video": "/assets/reels/reel-1.mp4",
+        "poster": "/assets/images/reel-1.jpg"
+      },
+      {
+        "title": "Brand story",
+        "category": "brand",
+        "video": "/assets/reels/reel-2.mp4",
+        "poster": "/assets/images/reel-2.jpg"
+      },
+      {
+        "title": "Creator edit",
+        "category": "creator",
+        "video": "/assets/reels/reel-3.mp4",
+        "poster": "/assets/images/reel-3.jpg"
+      },
+      {
+        "title": "TVS promo",
+        "category": "ads",
+        "video": "/assets/reels/reel-4.mp4",
+        "poster": "/assets/images/reel-4.jpg"
+      },
+      {
+        "title": "Jewellery trend",
+        "category": "showroom",
+        "video": "/assets/reels/reel-5.mp4",
+        "poster": "/assets/images/reel-5.jpg"
+      },
+      {
+        "title": "Growth campaign",
+        "category": "brand",
+        "video": "/assets/reels/reel-6.mp4",
+        "poster": "/assets/images/reel-6.jpg"
+      }
+    ]
+  },
+  "grade": {
+    "h": [
+      "Every frame,",
+      "*graded*"
+    ],
+    "text": "Raw footage looks flat. Colour grading gives it mood, natural skin tones and a soft, film-like finish. Drag the line to see the difference.",
+    "bullets": [
+      "Natural, healthy skin tones",
+      "One consistent look across all your videos",
+      "Clean sound with no dead air"
+    ],
+    "before": "/assets/images/before.jpg",
+    "after": "/assets/images/after.jpg"
+  },
+  "process": {
+    "h": [
+      "How it",
+      "*works*"
+    ],
+    "lead": "Simple, clear and quick. You always know what happens next.",
+    "steps": [
+      {
+        "n": "01",
+        "title": "Share your idea",
+        "text": "Tell us about your business, your goal and who you want to reach. A WhatsApp message is enough to begin.",
+        "icon": "bolt"
+      },
+      {
+        "n": "02",
+        "title": "We plan and shoot",
+        "text": "We write the hook and script, plan every shot and film at your location or in our setup with proper lighting.",
+        "icon": "content"
+      },
+      {
+        "n": "03",
+        "title": "You review",
+        "text": "You get the first cut in 24-48 hours. Ask for changes as many times as you need. Revisions are unlimited.",
+        "icon": "eye"
+      },
+      {
+        "n": "04",
+        "title": "Post and grow",
+        "text": "We send final files in the right sizes. Post them as reels, run them as ads, or both.",
+        "icon": "reels"
+      }
+    ]
+  },
+  "why": {
+    "h": [
+      "Why",
+      "*Mad Monkey*"
+    ],
+    "bad_title": "A random freelancer",
+    "bad": [
+      "Slow replies and missed deadlines",
+      "One person doing everything",
+      "Quality changes from video to video"
+    ],
+    "good_title": "Mad Monkey",
+    "good": [
+      "First cut in 24-48 hours",
+      "A full team on your project",
+      "The same premium look, every time"
+    ],
+    "features": [
+      {
+        "title": "Quick turnaround",
+        "text": "You do not wait weeks. Your first cut reaches you in 24-48 hours.",
+        "icon": "bolt"
+      },
+      {
+        "title": "A real team",
+        "text": "Senior editors, camera crew and a person you can always reach.",
+        "icon": "users"
+      },
+      {
+        "title": "Detail in every frame",
+        "text": "We check colour, sound and pacing on every video before it reaches you.",
+        "icon": "eye"
+      }
+    ]
+  },
+  "audience": {
+    "h": [
+      "Who we",
+      "*work with*"
+    ],
+    "lead": "Different goals need different videos. Here is how we help each kind of client.",
+    "cards": [
+      {
+        "title": "Showrooms",
+        "text": "Show your space and products so more people walk in and ask.",
+        "bullets": [
+          "Walkthrough reels",
+          "Offer and festival videos",
+          "Product close-ups"
+        ]
+      },
+      {
+        "title": "Brands",
+        "text": "Look premium and consistent across reels, ads and your website.",
+        "bullets": [
+          "Brand films",
+          "Ad creatives",
+          "Photo and video library"
+        ]
+      },
+      {
+        "title": "Creators",
+        "text": "Edits that keep viewers watching and help your channel grow.",
+        "bullets": [
+          "Reels and Shorts",
+          "Podcast and YouTube edits",
+          "Personal branding"
+        ]
+      }
+    ]
+  },
+  "faq_h": [
+    "Questions we",
+    "*often hear*"
+  ],
+  "cta_h": [
+    "Let's make your",
+    "*next video*"
+  ],
+  "seo": {
+    "title": "Mad Monkey Media | Video Production Studio",
+    "description": "Mad Monkey Media is a video production studio serving brands in India, the USA and Vietnam. Reels, brand films and ads for showrooms, brands and creators."
+  }
+}
